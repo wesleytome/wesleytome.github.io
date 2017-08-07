@@ -1,0 +1,13 @@
+{
+    "name": "Wesley Tomé",
+    "description": "Resume",
+    "authors": [
+        {
+            "name": "Wesley Tomé",
+            "email": "wesleytome@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.8"
+    }
+}

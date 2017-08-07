@@ -1,0 +1,1 @@
+console.log('abriu o arquivo teste!!!');

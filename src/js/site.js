@@ -526,7 +526,7 @@ function initMap() {
 
     circleGroup.append('image')
             .attr({
-                'xlink:href':'http://www.adeveloperdiary.com/wp-content/uploads/2015/11/plus.png',
+                'xlink:href':'./assets/img/icon-read.png',
                 width:30,
                 height:30,
                 transform:'translate(-10,'+ (-outerRadius+0) +')'
@@ -534,7 +534,7 @@ function initMap() {
 
     circleGroup.append('image')
             .attr({
-                'xlink:href':'http://www.adeveloperdiary.com/wp-content/uploads/2015/11/minus.png',
+                'xlink:href':'./assets/img/icon-write.png',
                 width:30,
                 height:30,
                 transform:'translate(-10,'+ (-innerRadius+0) +')'
@@ -542,7 +542,7 @@ function initMap() {
 
     circleGroup.append('image')
             .attr({
-                'xlink:href':'http://www.adeveloperdiary.com/wp-content/uploads/2015/11/minus.png',
+                'xlink:href':'./assets/img/icon-speak.png',
                 width:30,
                 height:30,
                 transform:'translate(-10,'+ (-innerRadius+30) +')'
