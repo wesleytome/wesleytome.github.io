@@ -133,8 +133,8 @@ module.exports = function(grunt) {
 		// WATCH FILES FOR CHANGES
 		watch: {
 			frontend: {
-				files: ['<%= globalConfig.front.src %>/site.scss','<%= globalConfig.front.src %>/js/site.js'],
-				tasks: ['sass','cssmin']
+				files: ['<%= globalConfig.front.src %>/scss/site.scss','<%= globalConfig.front.src %>/js/site.js'],
+				tasks: ['sass']
 			}
 		},
 	});

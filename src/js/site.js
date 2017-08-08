@@ -547,7 +547,6 @@ function initMap() {
                 height:30,
                 transform:'translate(-10,'+ (-innerRadius+30) +')'
             });
-console.log(innerRadius);
 
     svg.append("text")
        .attr("text-anchor", "middle")  
