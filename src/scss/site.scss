@@ -2,9 +2,10 @@
 @import "mixins";
 @import "grid";
 @import "separators";
+@import "../css/icons.css";
 
 @import url(https://fonts.googleapis.com/css?family=Varela+Round);
-@import url(https://fonts.googleapis.com/css?family=Squada+One);
+// @import url(https://fonts.googleapis.com/css?family=Squada+One);
 
 body, html{height: 100%;}
 body {	
@@ -112,6 +113,25 @@ header{
     height: 100%;
     padding-top:30%;
 
+    &.contact{
+      span::before{
+        padding-right:5px;
+      }
+      position: relative;
+      display: table;
+      top: 0;
+      width: 100%;
+      height: 10px;
+      padding: 0;
+      background: rgba(0, 0, 0, 0.2);
+      color: white;
+      font-size: 0.9em;
+      text-align: right;
+      div{
+        float: right;
+      }
+    }
+
     .circle {
       display: block;
       position:relative;
@@ -176,7 +196,7 @@ header{
       margin:0 auto;
       h2 {
         text-transform: uppercase;
-        font-family: 'Squada One', cursive;
+        // font-family: 'Squada One', cursive;
         font-weight: 800;
         display: block;
         background: #FFF;
@@ -423,7 +443,7 @@ section{
     h2 {
       text-indent:initial;
       text-transform: uppercase;
-      font-family: 'Squada One', cursive;
+      // font-family: 'Squada One', cursive;
       font-weight: 800;
       display: block;
       background: #FFF;
@@ -460,7 +480,7 @@ section{
     h2 {
       text-indent:initial;
       text-transform: uppercase;
-      font-family: 'Squada One', cursive;
+      // font-family: 'Squada One', cursive;
       font-weight: 800;
       display: block;
       background: #FFF;
