@@ -282,6 +282,10 @@ section{
         z-index: 5;
       }
       li {
+        &.avaible{
+          margin-bottom: 3em;
+        }
+
         padding: 1em 0;
         @media(max-width: 860px) {
           padding: 2em 0;
@@ -372,7 +376,7 @@ section{
     h3{
       font-size: 1.6em;
     }
-    .avaible {
+    .online {
       display: inline-block;
       width: 10px;
       height: 10px;
