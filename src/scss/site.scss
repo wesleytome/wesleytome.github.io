@@ -114,15 +114,21 @@ header{
     padding-top:30%;
 
     &.contact{
-      span::before{
-        padding-right:5px;
+      span{
+        margin-right:2em;
+        &:before{
+          margin-right:0.3em;
+        }
+        &:last-child{
+          margin:0;
+        }
       }
       position: relative;
       display: table;
       top: 0;
       width: 100%;
       height: 10px;
-      padding: 0;
+      padding: 0.8em;
       background: rgba(0, 0, 0, 0.2);
       color: white;
       font-size: 0.9em;
@@ -201,7 +207,7 @@ header{
         display: block;
         background: #FFF;
         color: map-get($colors, primary);
-        font-size: 2em;
+        font-size: 1.6em;
         padding:0.09em 3em;
         text-align: center;
         text-decoration: none;
