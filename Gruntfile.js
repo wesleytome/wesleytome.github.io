@@ -32,7 +32,8 @@ module.exports = function(grunt) {
 			dist: {
 				// Files Array Format
 				files: [
-					{ src: [
+					{
+						src: [
 						'<%= globalConfig.front.src %>_js/site.min.js',
 						'<%= globalConfig.front.src %>_js/teste.min.js'
 						],

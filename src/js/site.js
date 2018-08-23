@@ -205,7 +205,7 @@ function initMap() {
     var hotelMarker = new customMarker(new google.maps.LatLng(48.858640, 2.298546), map, {
       class_name: 'hotel-marker',
       marker_id: '08',
-      price: ''
+      price: 'Paris'
     }); 
     // var marker = new google.maps.Marker({
     //   position: {lat: 48.858640, lng: 2.298546},
@@ -215,7 +215,7 @@ function initMap() {
 
     var hotelMarker = new customMarker(new google.maps.LatLng(-22.907377, -43.190850), map, {
       class_name: 'hotel-marker',
-      marker_id: '08',
+      marker_id: '09',
       price: 'I\'m here!'
     }); 
   }
