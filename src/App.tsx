@@ -293,7 +293,7 @@ function App() {
               <div className="relative inline-block">
                 <Flex gap="2">
                   <Avatar
-                    src="/public/profile-picture.jpg"
+                    src="/profile-picture.jpg"
                     fallback="Wesley Tomé"
                     size="9"
                     className="ring-primary/30 animate-pulse-glow"
