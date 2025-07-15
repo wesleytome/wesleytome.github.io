@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ChevronDown, ChevronRight, Mail, MapPin, Phone, Linkedin, Download, Award, Users, TrendingUp, Globe, Calendar, Target, Lightbulb, Rocket, GraduationCap, Briefcase, Star, Shield, Send, Github, User } from "lucide-react";
+import TravelGlobe3D from './components/TravelGlobe3d';
+
 
 function App() {
   // Data Structure - Services
@@ -34,14 +36,14 @@ function App() {
   
 
   // Data Structure - About Me
-  const aboutMe = "Technology Executive and Product Leader with 20+ years of experience bridging business strategy, product innovation, and technical execution. Proven track record of scaling operations across LATAM markets, leading digital transformation initiatives, and delivering measurable business impact through strategic technology solutions and high-performance team leadership.";
+  const aboutMe = "Technology Executive and Product Leader with 25 years of experience bridging business strategy, product innovation, and technical execution. Proven track record of scaling operations across LATAM markets, leading digital transformation initiatives, and delivering measurable business impact through strategic technology solutions and high-performance team leadership.";
 
 
   // Data Structure - Statistics
   const stats = [
-    { value: "20+", label: "Years of Experience" },
+    { value: "25", label: "Years of Experience" },
     { value: "70+", label: "Professionals Led" },
-    { value: "$2M", label: "Monthly Impact" },
+    { value: "+$2M", label: "Monthly Impact" },
     { value: "5", label: "LATAM Countries" }
   ];
 
@@ -255,7 +257,7 @@ function App() {
 
   // Sort data for timeline
   const sortedExperiences = [...experiences].sort((a, b) => {
-    const getYear = (year) => {
+    const getYear = (year: string) => {
       if (year === "Present") return 9999;
       return parseInt(year.split('-')[0]);
     };
@@ -263,7 +265,7 @@ function App() {
   });
 
   const sortedEducation = [...education].sort((a, b) => {
-    const getYear = (year) => parseInt(year.split('-')[0]);
+    const getYear = (year: string) => parseInt(year.split('-')[0]);
     return getYear(b.year) - getYear(a.year);
   });
 
@@ -318,20 +320,24 @@ function App() {
               {/* Social Links */}
               <div className="flex justify-center gap-3">
                 <Button variant="outline" className="glass-card hover-lift">
-                  <Linkedin className="h-5 w-5" />
+                  <a href="https://www.linkedin.com/in/wesleytome" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
                 </Button>
                 {/* <Button variant="outline" className="glass-card hover-lift">
                   <Github className="h-5 w-5" />
                 </Button> */}
-                <Button variant="outline" className="glass-card hover-lift">
+                {/* <Button variant="outline" className="glass-card hover-lift">
                   <Mail className="h-5 w-5" />
-                </Button>
+                </Button> */}
               </div>
 
               {/* Download CV Button */}
               <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground animate-pulse-glow" radius="full" variant="soft">
                 <Download className="mr-2 h-5 w-5" />
-                Download Resume
+                  <a href="https://www.wesleytome.com/resume_wesley-tome.pdf" target="_blank" rel="noopener noreferrer">
+                    Download Resume
+                  </a>
               </Button>
             </div>
           </div>
@@ -422,7 +428,7 @@ function App() {
                 ...sortedExperiences.map(exp => exp.year),
                 ...sortedEducation.map(edu => edu.year)
               ])].sort((a, b) => {
-                const getYear = (year) => {
+                const getYear = (year: string) => {
                   if (year === "Present") return 9999;
                   return parseInt(year.split('-')[0]);
                 };
@@ -607,7 +613,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+      {/* <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold mb-6 text-foreground">
@@ -652,29 +658,10 @@ function App() {
             </CardContent>
           </Card>
         </div>
-      </section>
+      </section> */}
 
-      {/* Location Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold mb-6 text-foreground">
-              Where I Am
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Currently in São Paulo, with experience in 5 LATAM countries
-            </p>
-          </div>
 
-          <div className="bg-muted/50 rounded-lg h-96 flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">São Paulo, SP</h3>
-              <p className="text-muted-foreground">Brazil</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TravelGlobe3D></TravelGlobe3D> 
 
       {/* Footer */}
       <footer className="py-20 px-4 sm:px-6 lg:px-8 bg-card text-accent-foreground">
@@ -699,26 +686,34 @@ function App() {
                 job@wesleytome.com
               </a>
             </div>
-            <div className="flex items-center gap-2 text-gray-300">
+            {/* <div className="flex items-center gap-2 text-gray-300">
               <Phone className="w-4 h-4 text-primary" />
               <span>+55 21 98029-8811</span>
-            </div>
+            </div> */}
           </div>
           
           <div className="flex justify-center gap-4 mb-8">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" radius="full">
+            {/* <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" radius="full">
               <Mail className="w-5 h-5 mr-2" />
               Get in Touch
+            </Button> */}
+            <Button 
+              variant="outline" 
+              className="border-white text-white hover:bg-white hover:text-dark" 
+              radius="full"
+              asChild
+            >
+              <a href="https://www.linkedin.com/in/wesleytome" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="w-5 h-5 mr-2" />
+                LinkedIn
+              </a>
             </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-dark" radius="full">
-              <Linkedin className="w-5 h-5 mr-2" />
-              LinkedIn
-            </Button>
+
           </div>
           
           <div className="border-t border-gray-600 pt-8">
             <p className="text-sm text-gray-400">
-              © 2024 Wesley Tomé. Transforming businesses through technology for 20 years.
+              © 2025 Wesley Tomé. Transforming businesses through technology for 25 years.
             </p>
           </div>
         </div>
