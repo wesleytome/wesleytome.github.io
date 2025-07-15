@@ -1,11 +1,8 @@
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, Button, Flex } from "@radix-ui/themes";
-import { Button as ButtonD } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { ChevronDown, ChevronRight, Mail, MapPin, Phone, Linkedin, Download, Award, Users, TrendingUp, Globe, Calendar, Target, Lightbulb, Rocket, GraduationCap, Briefcase, Star, Shield, Send, Github, User } from "lucide-react";
+import { ChevronRight, Mail, MapPin, Linkedin, Download, Users, Target, Rocket, GraduationCap, Briefcase, Star, Shield, User } from "lucide-react";
 import TravelGlobe3D from './components/TravelGlobe3d';
 
 

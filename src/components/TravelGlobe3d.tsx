@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Globe from 'react-globe.gl';
-import { MapPin, Plane } from 'lucide-react';
+import { Plane } from 'lucide-react';
 import globeTexture from "../assets/globe.svg";
 
 interface Place {
@@ -17,7 +17,7 @@ const TravelGlobe3D = () => {
   // Estados
   const [isMobile, setIsMobile] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
-  const globeRef = useRef<any>();
+  const globeRef = useRef<any>(null);
   
   // Dados dos locais visitados
   const visitedPlaces: Place[] = [
@@ -48,20 +48,24 @@ const TravelGlobe3D = () => {
   // Configuração do globo após carregamento
   useEffect(() => {
     if (globeRef.current) {
-      const globe = globeRef.current;
-      
-      // Configurações de controle
-      globe.controls().autoRotate = false;
-      globe.controls().autoRotateSpeed = 0.6;
-      globe.controls().enableZoom = false;
+      const controls = globeRef.current.controls();
+      if (controls) {
+        // Configurações de controle
+        controls.enableZoom = false;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.5;
+        controls.enablePan = false;
+        controls.enableRotate = true;
+      }
       
       // Posição inicial do globo
-      globe.pointOfView({ lat: 48.0, lng: 11.0, altitude: 3 }, 4000);
+      globeRef.current.pointOfView({ lat: 48.0, lng: 11.0, altitude: 3 }, 4000);
     }
   }, []);
 
   // Função para criar marcadores HTML customizados
-  const createMarkerElement = (place: Place) => {
+  const createMarkerElement = (d: any) => {
+    const place = d as Place;
     const el = document.createElement("div");
     el.innerHTML = `
       <div style="
@@ -97,7 +101,7 @@ const TravelGlobe3D = () => {
             </h2>
           </div>
           <p className="text-xl text-muted-foreground mb-4">
-            Throughout my career, I’ve had the opportunity to explore diverse countries across Latin America and beyond. These experiences have enriched my cultural awareness, sharpened my adaptability, and deepened my understanding of local markets, behaviors, and business dynamics.
+            Throughout my career, I've had the opportunity to explore diverse countries across Latin America and beyond. These experiences have enriched my cultural awareness, sharpened my adaptability, and deepened my understanding of local markets, behaviors, and business dynamics.
           </p>
           <p className="text-xl text-muted-foreground">
             Whether leading cross-border initiatives, working side-by-side with multicultural teams, or simply immersing myself in local life, each destination has contributed to my ability to navigate complexity and build meaningful connections across cultures.
@@ -121,7 +125,7 @@ const TravelGlobe3D = () => {
             atmosphereColor="#4a90e2"
             atmosphereAltitude={0.15}
             
-            // Marcadores HTML customizados (seguindo o padrão do código de referência)
+            // Marcadores HTML customizados
             htmlElementsData={visitedPlaces}
             htmlElement={createMarkerElement}
             htmlAltitude={0.15}
@@ -130,7 +134,7 @@ const TravelGlobe3D = () => {
             pointsData={visitedPlaces}
             pointAltitude={0.15}
             pointColor="color"
-            pointRadius={(d) => d.size || 0.5}
+            pointRadius={(d: any) => (d as Place).size || 0.5}
             
             // Labels dos pins
             pointLabel={(d) => `
@@ -142,20 +146,15 @@ const TravelGlobe3D = () => {
                 font-family: system-ui;
                 box-shadow: 0 4px 12px rgba(0,0,0,0.3);
               ">
-                <strong style="font-size: 14px;">${d.name}</strong><br/>
-                <span style="font-size: 12px; opacity: 0.8;">${d.country}</span>
-                ${d.isHome ? '<br/><span style="color: #f59e0b;">🏠 Home</span>' : ''}
+                <strong style="font-size: 14px;">${(d as Place).name}</strong><br/>
+                <span style="font-size: 12px; opacity: 0.8;">${(d as Place).country}</span>
+                ${(d as Place).isHome ? '<br/><span style="color: #f59e0b;">🏠 Home</span>' : ''}
               </div>
             `}
             
             // Interatividade
-            onPointClick={(point) => setSelectedPlace(point)}
+            onPointClick={(point: any) => setSelectedPlace(point as Place)}
             enablePointerInteraction={true}
-            
-            // Controles
-            enableZoom={false}
-            enablePan={true}
-            enableRotate={true}
             
             // Animação de entrada
             animateIn={true}
@@ -195,13 +194,6 @@ const TravelGlobe3D = () => {
             </div>
             <p className="text-sm text-muted-foreground">Cities Visited</p>
           </div>
-
-          {/* <div className="text-center p-6 glass-card">
-            <div className="text-3xl font-bold text-primary mb-2">
-              {[...new Set(visitedPlaces.map(p => p.country))].length}
-            </div>
-            <p className="text-sm text-muted-foreground">Countries</p>
-          </div> */}
 
           <div className="text-center p-6 glass-card">
             <div className="text-3xl font-bold text-primary mb-2">3</div>
