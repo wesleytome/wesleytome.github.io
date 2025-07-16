@@ -6,6 +6,128 @@
 @custom-variant dark (&:is(.dark *));
 
 
+@font-face {
+  font-family: "Grandis Extended";
+  src: url("/public/fonts/grandnationalexpand.ttf");
+  font-weight: 200 700;
+  font-display: swap;
+}
+
+@theme {
+  --font-grandis: "Grandis Extended", sans-serif;
+}
+
+
+@layer utilities {
+  .blob {
+    animation: morph 3.6s linear infinite;
+    background: #f5910e;
+    border-collapse: separate;
+    background-size: cover;
+    background-position: center;
+    outline: 1px solid transparent;
+  }
+
+  @keyframes morph {
+    0% { border-radius: 30% 70% 50% 50% / 60% 40% 60% 40%; }
+    50% { border-radius: 60% 40% 30% 70% / 40% 60% 40% 60%; }
+    100% { border-radius: 30% 70% 50% 50% / 60% 40% 60% 40%; }
+  }
+}
+@media only screen and (min-width: 600px) {
+  .drop-shadow-div {
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-filter: drop-shadow(0 0 1.5rem #a0ada7);
+    filter: drop-shadow(0 0 1.5rem #95a09eed);
+  }
+}
+
+#repulse-div {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-filter: drop-shadow(0 0 5rem #29c27f);
+  filter: drop-shadow(0 0 5rem #29c27f);
+}
+
+#repulse-div > h1 {
+  -webkit-filter: drop-shadow(0 0 5rem #29c27f);
+  filter: drop-shadow(0 0 5rem #29c27f);
+}
+
+#repulse-div {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-filter: drop-shadow(0 0 5rem #29c27f);
+  filter: drop-shadow(0 0 5rem #29c27f);
+}
+
+#repulse-div > h1 {
+  -webkit-filter: drop-shadow(0 0 5rem #29c27f);
+  filter: drop-shadow(0 0 5rem #29c27f);
+}
+
+
+/* Efeito executivo para a imagem de perfil */
+.executive-profile {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 20px 40px rgba(82, 212, 238, 0.1);
+}
+
+.executive-profile:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.executive-profile img {
+  transition: transform 0.4s ease;
+}
+
+.executive-profile:hover img {
+  transform: scale(1.05);
+}
+
+
+
+/* Animação de pulso mais suave */
+@keyframes professional-pulse {
+  0%, 100% {
+    transform: scale(1.05);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.6;
+  }
+}
+
+.animate-pulse {
+  animation: professional-pulse 4s ease-in-out infinite;
+}
+
+/* Glass card effect para as estatísticas */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .executive-profile {
+    margin: 0 auto;
+  }
+}
+
+
 :root {
   --gradient-color-1: hsl(45, 100%, 50%);
   --gradient-color-2: hsl(17, 100%, 50%);
@@ -111,6 +233,11 @@
     --primary-foreground: hsl(0, 0%, 20.5%);
     --secondary: hsla(33, 66%, 68%, 0.903);
     --secondary-foreground: hsl(0, 0%, 98%);
+
+    --tertiary: hsla(209, 58%, 11%, 0.493);
+    --tertiary-foreground: hsl(0, 0%, 98%);
+
+
     --muted: hsl(220, 15%, 15%);
     --muted-foreground: hsl(220, 10%, 70%);
     --accent: hsl(83, 26%, 60%);
@@ -174,6 +301,11 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
@@ -226,7 +358,24 @@
   background-color: rgba(63, 63, 60, 0.475);
   /* background-image: 
     radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0); */
+    background: url("https://uploads-ssl.webflow.com/62e3ee10882dc50bcae8d07a/631a5d4631d4c55a475f3e34_noise-50.png");
+    background-color: #16171b;
+    position: relative;
+    overflow-x: hidden;
+    -webkit-overflow-x: hidden;
 }
+
+#hero{
+  background: #4a5ad9;
+  background: radial-gradient(circle, rgb(20, 37, 70) 0%, rgb(2, 3, 10) 100%);
+}
+.icon-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+}
+
 
 /* Gradient Text Effects */
 .gradient-text {
@@ -347,6 +496,9 @@
 }
 
 /* Smooth scrolling */
+* {
+  scroll-behavior: smooth;
+}
 html {
   scroll-behavior: smooth;
 }

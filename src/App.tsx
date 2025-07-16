@@ -2,9 +2,10 @@ import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, Button, Flex } from "@radix-ui/themes";
 import { Badge } from "@/components/ui/badge";
-import { ChevronRight, Mail, MapPin, Linkedin, Download, Users, Target, Rocket, GraduationCap, Briefcase, Star, Shield, User } from "lucide-react";
+import { Award, ChevronRight, Mail, MapPin, Linkedin, Download, Users, Hammer, Target, Plane,Rocket, GraduationCap, Briefcase, Star, Shield, User, ShieldCheck } from "lucide-react";
 import TravelGlobe3D from './components/TravelGlobe3d';
-
+import HeroNew from './components/HeroNew';
+import SectionTitle from './components/SectionTitle';
 
 function App() {
   // Data Structure - Services
@@ -13,19 +14,19 @@ function App() {
       title: "Executive Leadership & Strategy",
       description: "C-level strategic consulting combining business acumen with deep technology expertise. Proven experience leading large teams and driving organizational transformation across multiple industries.",
       icon: Target,
-      color: "bg-gradient-to-br from-primary to-primary/70"
+      color: "bg-gradient-to-br from-primary to-secondary/20"
     },
     {
       title: "Product & Technology Innovation",
       description: "End-to-end product development and technology strategy, from concept to scale. Experience building products that drive measurable business impact through innovative solutions.",
       icon: Rocket,
-      color: "bg-gradient-to-br from-secondary to-secondary/70"
+      color: "bg-gradient-to-br from-primary to-secondary/20"
     },
     {
       title: "Digital Transformation & Operations",
       description: "Enterprise-wide digital transformation leadership with proven expertise in operational excellence and scaling operations across LATAM markets.",
       icon: Users,
-      color: "bg-gradient-to-br from-tertiary to-tertiary/70"
+      color: "bg-gradient-to-br from-primary to-secondary/20"
     }
   ];
   
@@ -280,104 +281,29 @@ function App() {
     setExpandedExperiences(newExpanded);
   };
 
+
+  
+
   return (
-    <div className="min-h-screen bg-background tech-pattern">
+    <div className="min-h-screen bg- tech-pattern">
+      
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"></div>
-        
-        <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-          {/* Profile Card */}
-          <div className="glass-card p-8 hover-lift animate-slide-in-left">
-            <div className="text-center space-y-6">
-              <div className="relative inline-block">
-                <Flex gap="2">
-                  <Avatar
-                    src="/profile-picture.jpg"
-                    fallback="Wesley Tomé"
-                    size="9"
-                    className="ring-primary/30 animate-pulse-glow"
-                  />
-                </Flex>
-                <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-success rounded-full border-4 border-card animate-pulse"></div>
-              </div>
-              
-              <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl font-bold gradient-text">
-                  Wesley Tomé
-                </h1>
-                <p className="text-lg text-primary font-semibold">
-                Technology Executive & Product Leader
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Transforming ideas into innovative technology solutions that drive business growth
-                </p>
-              </div>
-
-              {/* Social Links */}
-              <div className="flex justify-center gap-3">
-                <Button variant="outline" className="glass-card hover-lift">
-                  <a href="https://www.linkedin.com/in/wesleytome" target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="w-5 h-5" />
-                  </a>
-                </Button>
-                {/* <Button variant="outline" className="glass-card hover-lift">
-                  <Github className="h-5 w-5" />
-                </Button> */}
-                {/* <Button variant="outline" className="glass-card hover-lift">
-                  <Mail className="h-5 w-5" />
-                </Button> */}
-              </div>
-
-              {/* Download CV Button */}
-              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground animate-pulse-glow" radius="full" variant="soft">
-                <Download className="mr-2 h-5 w-5" />
-                  <a href="https://www.wesleytome.com/resume_wesley-tome.pdf" target="_blank" rel="noopener noreferrer">
-                    Download Resume
-                  </a>
-              </Button>
-            </div>
-          </div>
-
-          {/* About Me Card */}
-          <div className="glass-card p-8 hover-lift animate-slide-in-right">
-            <div className="space-y-6">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-                  <User className="h-6 w-6 text-primary" />
-                </div>
-                <h2 className="text-3xl font-bold gradient-text">About Me</h2>
-              </div>
-
-              <p className="text-muted-foreground leading-relaxed text-lg text-left">
-                {aboutMe}
-              </p>
-
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-4 mt-8">
-                {stats.map((stat, index) => (
-                  <div key={index} className="text-center p-4 glass-card interactive-card">
-                    <div className="text-3xl font-bold text-primary mb-1">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div id="hero" className="w-full flex bg-tertiary justify-center overflow-hidden-web relative">
+        <HeroNew />
+      </div>
 
       {/* Services Section */}
-      <section className="py-20 px-6">
+      <section id="services" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
+            <div className="w-auto h-12 bg-primary/5 rounded-xl flex items-center justify-center">
+              <Briefcase className="h-6 w-6 text-primary" />
+            </div>
             <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-                <Briefcase className="h-6 w-6 text-primary" />
+              <div className="w-full">
+                <SectionTitle title="SERVICES" subtitle="What I Do" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold gradient-text">
-                My Services
-              </h2>
+
             </div>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Offering specialized technology consulting focused on strategy and development
@@ -387,13 +313,13 @@ function App() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <Card key={index} className="glass-card hover-lift interactive-card group border-0">
-                <CardHeader className="space-y-4">
+                <CardHeader className="space-y-4 flex items-center justify-center">
                   <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${service.color} group-hover:scale-110 transition-transform animate-float`} 
                       style={{animationDelay: `${index * 0.5}s`}}>
                     <service.icon className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-2xl gradient-text">{service.title}</CardTitle>
                 </CardHeader>
+                <CardTitle className="space-y-4 text-2xl gradient-text">{service.title}</CardTitle>
                 <CardContent>
                   <p className="text-muted-foreground leading-relaxed">{service.description}</p>
                 </CardContent>
@@ -407,9 +333,13 @@ function App() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold mb-6 text-foreground">
-              My Journey
-            </h2>
+            <div className="w-auto h-12 bg-primary/5 rounded-xl flex items-center justify-center">
+              <Hammer className="h-6 w-6 text-primary" />
+              <GraduationCap className="h-6 w-6 text-primary ml-10" />
+            </div>
+            <div className="w-full">
+              <SectionTitle title="MY JOURNEY" subtitle="Experiences & Education" />
+            </div>
             <p className="text-xl text-muted-foreground">
               Professional experiences and academic background
             </p>
@@ -557,9 +487,12 @@ function App() {
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold mb-6 text-foreground">
-              Awards & Achievements
-            </h2>
+            <div className="w-auto h-12 bg-primary/5 rounded-xl flex items-center justify-center">
+              <Award className="h-6 w-6 text-primary" />
+            </div>
+            <div className="w-full">
+              <SectionTitle title="AWARD & ACHIEVEMENT" subtitle="Works That I'm Proud Of" />
+            </div>
             <p className="text-xl text-muted-foreground">
               Recognition for excellence in innovation and leadership
             </p>
@@ -590,9 +523,12 @@ function App() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-bold mb-6 text-foreground">
-              Certifications
-            </h2>
+          <div className="w-auto h-12 bg-primary/5 rounded-xl flex items-center justify-center">
+            <ShieldCheck className="h-6 w-6 text-primary" />
+          </div>
+            <div className="w-full">
+              <SectionTitle title="CERTIFICATIONS" subtitle="Professional Certifications" />
+            </div>
             <p className="text-xl text-muted-foreground">
               Professional certifications in technology and agile methodologies
             </p>
