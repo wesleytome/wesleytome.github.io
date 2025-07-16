@@ -359,16 +359,22 @@
   /* background-image: 
     radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.1) 1px, transparent 0); */
     background: url("https://uploads-ssl.webflow.com/62e3ee10882dc50bcae8d07a/631a5d4631d4c55a475f3e34_noise-50.png");
-    background-color: #16171b;
+    /* background-color: #16171b; */
     position: relative;
     overflow-x: hidden;
     -webkit-overflow-x: hidden;
 }
 
-#hero{
-  background: #4a5ad9;
-  background: radial-gradient(circle, rgb(20, 37, 70) 0%, rgb(2, 3, 10) 100%);
-}
+
+
+/* #hero {
+  background: linear-gradient(
+    180deg,
+    var(--primary) 0%,
+    rgb(20, 37, 70) 0%,
+    var(--tertiary) 100%
+  );
+} */
 .icon-container {
   display: flex !important;
   align-items: center !important;
@@ -526,3 +532,39 @@ html {
   transform: translateY(0);
 }
 
+
+
+.plasma-effect {
+  position: relative;
+}
+
+.plasma-effect::before {
+  content: '';
+  position: absolute;
+  top: -15%;
+  left: -15%;
+  width: 130%;
+  height: 120%;
+  background: conic-gradient(
+    from 0deg,
+    #1c1d3c,
+    #141d45,
+    #152c51,
+    #131458,
+    #00296a,
+    #32165b
+  );
+  border-radius: 50%;
+  animation: plasmaRotate 3s linear infinite;
+  filter: blur(20px);
+  z-index: -1;
+}
+
+@keyframes plasmaRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

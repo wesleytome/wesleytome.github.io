@@ -97,7 +97,7 @@ const TravelGlobe3D = () => {
   };
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-blue to-slate-950">
       <div className="max-w-6xl mx-auto">
         {/* Header da seção */}
         <div className="text-center">

@@ -273,12 +273,16 @@ function App() {
     <div className="min-h-screen bg- tech-pattern">
       
       {/* Hero Section */}
-      <div id="hero" className="w-full flex bg-tertiary justify-center overflow-hidden-web relative">
-        <HeroNew />
-      </div>
+      <div id="hero" className="relative w-full overflow-hidden bg-gradient-to-b from-blue to-slate-950">
+  {/* conteúdo do hero aqui */}
+  <HeroNew />
+  {/* O shape fica absolutamente posicionado, não interfere no layout */}
+  
+
+</div>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-6">
+      <section id="services" className="py-20 px-6 bg-gradient-to-t from-blue to-slate-950">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 animate-fade-in-up">
             <div className="w-auto h-12 bg-primary/5 rounded-xl flex items-center justify-center">
@@ -315,7 +319,7 @@ function App() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue to-slate-950">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <div className="w-auto h-12 bg-primary/5 rounded-xl flex items-center justify-center">
@@ -469,7 +473,7 @@ function App() {
       </section>
 
       {/* Awards Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-blue to-slate-950">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <div className="w-auto h-12 bg-primary/5 rounded-xl flex items-center justify-center">
@@ -505,7 +509,7 @@ function App() {
       </section>
 
       {/* Certifications Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue to-slate-950">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
           <div className="w-auto h-12 bg-primary/5 rounded-xl flex items-center justify-center">
@@ -521,7 +525,7 @@ function App() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {certifications.map((cert, index) => (
-              <div key={index} className="flex items-center gap-3 p-4 bg-card border rounded-lg hover:shadow-md transition-shadow">
+              <div key={index} className="flex items-center gap-3 p-4 bg-card rounded-lg hover:shadow-md transition-shadow">
                 <Shield className="w-5 h-5 text-primary flex-shrink-0" />
                 <span className="text-sm font-medium">{cert}</span>
               </div>

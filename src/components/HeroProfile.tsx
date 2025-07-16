@@ -17,12 +17,12 @@ const HeroProfile = () => {
         
         {/* Profile Image with Circle Effect */}
         <div className="mb-8 flex justify-center lg:justify-center">
-          <div className="relative">
+          <div className="relative plasma-effect">
             <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl executive-profile">
               <img
                 src="/profile-picture.jpg"
                 alt="Wesley Tomé"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover multi-smoke"
               />
             </div>
             {/* Decorative animated ring */}
