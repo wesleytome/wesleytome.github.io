@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import Globe from 'react-globe.gl';
 import { Plane } from 'lucide-react';
-import globeTexture from "../assets/globe.svg";
+import globeTexture from "../assets/globe.jpg";
+import SectionTitle from './SectionTitle';
 
 interface Place {
   lat: number;
@@ -29,8 +30,16 @@ const TravelGlobe3D = () => {
     { lat: 40.4168, lng: -3.7038, name: 'Madrid', country: 'Spain', color: '#45b7d1', size: 0.5 },
     { lat: 51.5074, lng: -0.1278, name: 'London', country: 'UK', color: '#96ceb4', size: 0.5 },
     { lat: 48.8566, lng: 2.3522, name: 'Paris', country: 'France', color: '#f7dc6f', size: 0.5 },
-    { lat: -22.9068, lng: -43.1729, name: 'Rio de Janeiro', country: 'Brazil', color: '#f39c12', size: 0.8, isHome: true }
-  ];
+    { lat: -22.9068, lng: -43.1729, name: 'Rio de Janeiro', country: 'Brazil', color: '#f39c12', size: 0.8, isHome: true },
+
+    { lat: -33.4489, lng: -70.6693, name: 'Santiago', country: 'Chile', color: '#e74c3c', size: 0.5 },
+    { lat: 4.7110, lng: -74.0721, name: 'Bogotá', country: 'Colombia', color: '#f1c40f', size: 0.5 },
+    { lat: -25.2637, lng: -57.5759, name: 'Assunção', country: 'Paraguay', color: '#9b59b6', size: 0.5 },
+    { lat: -12.0464, lng: -77.0428, name: 'Lima', country: 'Peru', color: '#1abc9c', size: 0.5 }
+];
+
+
+
 
   // Hook para detectar dispositivos móveis
   useEffect(() => {
@@ -92,13 +101,14 @@ const TravelGlobe3D = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header da seção */}
         <div className="text-center">
+          <div className="w-auto h-12 bg-primary/5 rounded-xl flex items-center justify-center">
+            <Plane className="h-6 w-6 text-primary" />
+          </div>
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
-              <Plane className="h-6 w-6 text-primary" />
+            
+            <div className="w-full">
+              <SectionTitle title="PLACES I'VE EXPLORED" subtitle="Places I've Explored" />
             </div>
-            <h2 className="text-4xl font-display font-bold text-foreground">
-              Places I've Explored
-            </h2>
           </div>
           <p className="text-xl text-muted-foreground mb-4">
             Throughout my career, I've had the opportunity to explore diverse countries across Latin America and beyond. These experiences have enriched my cultural awareness, sharpened my adaptability, and deepened my understanding of local markets, behaviors, and business dynamics.
@@ -109,12 +119,12 @@ const TravelGlobe3D = () => {
         </div>
 
         {/* Globo 3D */}
-        <div className="mb-12 flex items-center justify-center cursor-grab">
+        <div className="-mb-20 -mt-20 flex items-center justify-center cursor-grab">
           <Globe
             ref={globeRef}
             
             // Textura do globo
-            globeImageUrl={globeTexture}
+            globeImageUrl= {globeTexture}
             
             // Fundo transparente
             backgroundColor="rgba(0,0,0,0)"
@@ -123,7 +133,7 @@ const TravelGlobe3D = () => {
             // Configurações de atmosfera
             showAtmosphere={true}
             atmosphereColor="#4a90e2"
-            atmosphereAltitude={0.15}
+            atmosphereAltitude={0.4}
             
             // Marcadores HTML customizados
             htmlElementsData={visitedPlaces}
@@ -141,7 +151,7 @@ const TravelGlobe3D = () => {
               <div style="
                 background: rgba(0,0,0,0.8);
                 color: white;
-                padding: 8px 12px;
+                padding: 8px px;
                 border-radius: 8px;
                 font-family: system-ui;
                 box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -160,8 +170,8 @@ const TravelGlobe3D = () => {
             animateIn={true}
             
             // Dimensões responsivas
-            width={isMobile ? 400 : 600}
-            height={isMobile ? 400 : 600}
+            width={isMobile ? 400 : 800}
+            height={isMobile ? 400 : 800}
           />
         </div>
 
