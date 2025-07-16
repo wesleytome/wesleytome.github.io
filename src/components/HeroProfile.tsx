@@ -43,7 +43,10 @@ const HeroProfile = () => {
             Wesley Tomé
           </h1>
           <p className="text-xl sm:text-2xl text-primary font-medium">
-            Product Strategy & Growth Executive
+            Technology & Product Executive
+          </p>
+          <p className="text-m sm:text-1xl text-white font-medium">
+            25 years building scalable digital products, leading agile teams, and solving complex problems with innovative tech.
           </p>
         </m.div>
 
