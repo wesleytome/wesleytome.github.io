@@ -1,7 +1,24 @@
 import { m, LazyMotion, domAnimation } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 const HeroAbout = () => {
+  
+  // Data Structure - About Me
+  // const aboutMe = "Technology Executive and Product Leader with 25 years of experience bridging business strategy, product innovation, and technical execution. Proven track record of scaling operations across LATAM markets, leading digital transformation initiatives, and delivering measurable business impact through strategic technology solutions and high-performance team leadership.";
+
+  // Data Structure - Statistics
+  // const stats = [
+  //   { value: "25", label: "Years of Experience" },
+  //   { value: "70+", label: "Professionals Led" },
+  //   { value: "+$2M", label: "Monthly Impact" },
+  //   { value: "5", label: "LATAM Countries" }
+  // ];
+
+  const stats = [
+    { value: "25", label: "Years of Experience" },
+    { value: "70+", label: "Professionals Led" },
+    { value: "+$2M", label: "Monthly Impact" },
+    { value: "5", label: "LATAM Countries" }
+  ];
 
   return (
 
@@ -57,25 +74,12 @@ const HeroAbout = () => {
           transition={{ duration: 0.6, delay: 0.9 }}
           className="mt-8 grid grid-cols-2 gap-4"
         >
-          <div className="glass-card p-4 text-center">
-            <div className="text-2xl font-bold text-primary mb-1">25</div>
-            <div className="text-sm text-muted-foreground">Years Experience</div>
-          </div>
-          
-          <div className="glass-card p-4 text-center">
-            <div className="text-2xl font-bold text-primary mb-1">50+</div>
-            <div className="text-sm text-muted-foreground">Products Launched</div>
-          </div>
-          
-          <div className="glass-card p-4 text-center">
-            <div className="text-2xl font-bold text-primary mb-1">70+</div>
-            <div className="text-sm text-muted-foreground">Team Members Led</div>
-          </div>
-          
-          <div className="glass-card p-4 text-center">
-            <div className="text-2xl font-bold text-primary mb-1">6</div>
-            <div className="text-sm text-muted-foreground">LATAM Countries</div>
-          </div>
+          {stats.map((stat: { value: string; label: string }, index: number) => (
+            <div key={index} className="text-center p-4 glass-card interactive-card">
+              <div className="text-3xl font-bold text-primary mb-1">{stat.value}</div>
+              <div className="text-sm text-muted-foreground">{stat.label}</div>
+            </div>
+          ))}
         </m.div>
 
         {/* CTA Button */}

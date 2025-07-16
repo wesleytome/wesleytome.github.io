@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, Button, Flex } from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes";
 import { Badge } from "@/components/ui/badge";
-import { Award, ChevronRight, Mail, MapPin, Linkedin, Download, Users, Hammer, Target, Plane,Rocket, GraduationCap, Briefcase, Star, Shield, User, ShieldCheck } from "lucide-react";
+import { Award, ChevronRight, Mail, MapPin, Linkedin, Users, Hammer, Target,Rocket, GraduationCap, Briefcase, Star, Shield, ShieldCheck } from "lucide-react";
 import TravelGlobe3D from './components/TravelGlobe3d';
 import HeroNew from './components/HeroNew';
 import SectionTitle from './components/SectionTitle';
@@ -28,21 +28,6 @@ function App() {
       icon: Users,
       color: "bg-gradient-to-br from-primary to-secondary/20"
     }
-  ];
-  
-
-  
-
-  // Data Structure - About Me
-  const aboutMe = "Technology Executive and Product Leader with 25 years of experience bridging business strategy, product innovation, and technical execution. Proven track record of scaling operations across LATAM markets, leading digital transformation initiatives, and delivering measurable business impact through strategic technology solutions and high-performance team leadership.";
-
-
-  // Data Structure - Statistics
-  const stats = [
-    { value: "25", label: "Years of Experience" },
-    { value: "70+", label: "Professionals Led" },
-    { value: "+$2M", label: "Monthly Impact" },
-    { value: "5", label: "LATAM Countries" }
   ];
 
   // Data Structure - Professional Experience

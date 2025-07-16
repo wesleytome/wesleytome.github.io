@@ -4,7 +4,7 @@ import { Linkedin, Download } from "lucide-react";
 
 
 const HeroProfile = () => {
-
+  
   return (
 
     <LazyMotion features={domAnimation} strict>

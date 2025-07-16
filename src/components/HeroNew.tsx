@@ -1,7 +1,3 @@
-import React from 'react';
-import { m, LazyMotion, domAnimation } from "framer-motion";
-import { Linkedin, Github, Mail, Download, MapPin, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import HeroScroller from './elements/HeroScroller';
 import HeroProfile from './HeroProfile';
 import HeroAbout from './HeroAbout';
