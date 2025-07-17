@@ -2,7 +2,6 @@ import { m, LazyMotion, domAnimation } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Linkedin, Download } from "lucide-react";
 
-
 const HeroProfile = () => {
   
   return (

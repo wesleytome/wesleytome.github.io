@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import Globe from 'react-globe.gl';
 import { Plane } from 'lucide-react';
 import globeTexture from "../assets/globe.jpg";
-import SectionTitle from './SectionTitle';
+import TitleSection from './TitleSection';
 
 interface Place {
   lat: number;
@@ -14,7 +14,7 @@ interface Place {
   isHome?: boolean;
 }
 
-const TravelGlobe3D = () => {
+const GlobeSection = () => {
   // Estados
   const [isMobile, setIsMobile] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
@@ -107,7 +107,7 @@ const TravelGlobe3D = () => {
           <div className="flex items-center justify-center gap-3 mb-6">
             
             <div className="w-full">
-              <SectionTitle title="PLACES I'VE EXPLORED" subtitle="Places I've Explored" />
+              <TitleSection title="PLACES I'VE EXPLORED" subtitle="Places I've Explored" />
             </div>
           </div>
           <p className="text-xl text-muted-foreground mb-4">
@@ -119,7 +119,7 @@ const TravelGlobe3D = () => {
         </div>
 
         {/* Globo 3D */}
-        <div className="-mb-20 -mt-20 flex items-center justify-center cursor-grab">
+        <div className="-mb-20 -mt-20 flex items-center justify-center cursor-grab ">
           <Globe
             ref={globeRef}
             
@@ -221,4 +221,4 @@ const TravelGlobe3D = () => {
   );
 };
 
-export default TravelGlobe3D;
+export default GlobeSection;

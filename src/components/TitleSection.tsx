@@ -1,6 +1,6 @@
 import { m, LazyMotion, domAnimation } from "framer-motion";
 
-const SectionTitle = (props: { title: string, subtitle: string }) => {
+const TitleSection = (props: { title: string, subtitle: string }) => {
   const { title, subtitle } = props;
 
   return (
@@ -38,4 +38,4 @@ const SectionTitle = (props: { title: string, subtitle: string }) => {
   );
 };
 
-export default SectionTitle;
+export default TitleSection;
