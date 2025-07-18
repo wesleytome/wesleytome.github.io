@@ -16,12 +16,12 @@ const HeroProfile = () => {
         
         {/* Profile Image with Circle Effect */}
         <div className="mb-8 flex justify-center lg:justify-center">
-          <div className="relative plasma-effect">
+          <div className="relative plasma-effect mt-8 sm:mt-10 lg:mt-0">
             <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl executive-profile">
               <img
                 src="/profile-picture.jpg"
                 alt="Wesley Tomé"
-                className="w-full h-full object-cover multi-smoke"
+                className="w-full h-full object-cover"
               />
             </div>
             {/* Decorative animated ring */}
@@ -30,6 +30,7 @@ const HeroProfile = () => {
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
           </div>
         </div>
+
 
         {/* Name */}
         <m.div
