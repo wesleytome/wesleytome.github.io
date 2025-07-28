@@ -17,9 +17,9 @@ const HeroProfile = () => {
         {/* Profile Image with Circle Effect */}
         <div className="mb-8 flex justify-center lg:justify-center">
           <div className="relative plasma-effect mt-8 sm:mt-10 lg:mt-0">
-            <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl executive-profile">
+            <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-2xl hero-profile">
               <img
-                src="/profile-picture.jpg"
+                src="/profile-picture-wesley-tome.png"
                 alt="Wesley Tomé"
                 className="w-full h-full object-cover"
               />
@@ -39,34 +39,17 @@ const HeroProfile = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-6 text-center"
         >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-2 font-grandis ">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold hero-title mb-2 font-grandis text-primary">
             Wesley Tomé
           </h1>
-          <p className="text-xl sm:text-2xl text-primary font-medium">
+          <p className="text-xl sm:text-2xl hero-subtitle font-medium">
             Technology & Product Executive
           </p>
-          <p className="text-m sm:text-1xl text-white font-medium">
+          <p className="text-m sm:text-1xl hero-description font-medium">
             25 years building scalable digital products, leading agile teams, and solving complex problems with innovative tech.
           </p>
         </m.div>
 
-        {/* Contact Info */}
-        {/* <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-6 space-y-2"
-        >
-          <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground">
-            <MapPin className="w-4 h-4" />
-            <span className="text-sm">São Paulo, Brazil</span>
-          </div>
-          <div className="flex items-center justify-center lg:justify-start gap-2 text-muted-foreground">
-            <Phone className="w-4 h-4" />
-            <span className="text-sm">+55 11 9 9999-9999</span>
-          </div>
-        </m.div> */}
-                      
         {/* Social Links */}
         <m.div
           initial={{ opacity: 0, y: 20 }}
@@ -74,7 +57,7 @@ const HeroProfile = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="flex justify-center lg:justify-center gap-4 mb-8"
         >
-            <Button variant="outline" className="glass-card hover-lift">
+            <Button variant="outline" className="glass-card hover-lift social-icon">
               <a href="https://www.linkedin.com/in/wesleytome" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5" />
               </a>

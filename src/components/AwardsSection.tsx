@@ -47,7 +47,7 @@ const AwardsSection = () => {
                 <div className="p-2 rounded-full bg-primary/10">
                   <Star className="w-6 h-6 text-primary" />
                 </div>
-                <Badge className="bg-primary/10 text-primary">{award.year}</Badge>
+                <Badge className="bg-primary/10 text-primary border-0">{award.year}</Badge>
               </div>
               <CardTitle className="text-lg">{award.title}</CardTitle>
             </CardHeader>

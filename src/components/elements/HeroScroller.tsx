@@ -29,7 +29,7 @@ const HeroScroller = () => {
         {/* Scroll Indicator */}
         <button
           onClick={scrollToNext}
-          className="cursor-pointer group"
+          className="cursor-pointer group scroll-button"
           aria-label="Scroll to next section"
         >
           <div className="w-[32px] h-[56px] rounded-3xl border-2 border-primary/60 flex justify-center items-start p-2 group-hover:border-primary transition-colors duration-300">

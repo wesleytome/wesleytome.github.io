@@ -52,7 +52,7 @@ const ServicesSection = () => {
                 <service.icon className="h-8 w-8 text-white" />
               </div>
             </CardHeader>
-            <CardTitle className="space-y-4 text-2xl gradient-text">{service.title}</CardTitle>
+            <CardTitle className="space-y-4 text-2xl gradient-text px-6">{service.title}</CardTitle>
             <CardContent>
               <p className="text-muted-foreground leading-relaxed">{service.description}</p>
             </CardContent>
