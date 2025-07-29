@@ -110,10 +110,10 @@ const GlobeSection = () => {
               <TitleSection title="PLACES I'VE EXPLORED" subtitle="Places I've Explored" />
             </div>
           </div>
-          <p className="text-xl text-muted-foreground mb-4">
+          <p className="text-xl mb-4">
             Throughout my career, I've had the opportunity to explore diverse countries across Latin America and beyond. These experiences have enriched my cultural awareness, sharpened my adaptability, and deepened my understanding of local markets, behaviors, and business dynamics.
           </p>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl">
             Whether leading cross-border initiatives, working side-by-side with multicultural teams, or simply immersing myself in local life, each destination has contributed to my ability to navigate complexity and build meaningful connections across cultures.
           </p>
         </div>
@@ -185,7 +185,7 @@ const GlobeSection = () => {
               ></div>
               <div>
                 <h3 className="text-xl font-bold">{selectedPlace.name}</h3>
-                <p className="text-muted-foreground">{selectedPlace.country}</p>
+                <p className="">{selectedPlace.country}</p>
               </div>
               {selectedPlace.isHome && (
                 <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium">
@@ -199,20 +199,20 @@ const GlobeSection = () => {
         {/* Estatísticas */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
           <div className="text-center p-6 glass-card">
-            <div className="text-3xl font-bold text-primary mb-2">
+            <div className="text-3xl font-bold text-secondary mb-2">
               {visitedPlaces.length}
             </div>
-            <p className="text-sm text-muted-foreground">Cities Visited</p>
+            <p className="text-sm">Cities Visited</p>
           </div>
 
           <div className="text-center p-6 glass-card">
-            <div className="text-3xl font-bold text-primary mb-2">3</div>
-            <p className="text-sm text-muted-foreground">Continents</p>
+            <div className="text-3xl font-bold text-secondary mb-2">3</div>
+            <p className="text-sm">Continents</p>
           </div>
           
           <div className="text-center p-6 glass-card">
-            <div className="text-3xl font-bold text-primary mb-2">∞</div>
-            <p className="text-sm text-muted-foreground">Memories</p>
+            <div className="text-3xl font-bold text-secondary mb-2">∞</div>
+            <p className="text-sm">Memories</p>
           </div>
         </div>
 

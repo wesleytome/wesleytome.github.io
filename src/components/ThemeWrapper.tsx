@@ -10,7 +10,7 @@ const ThemeWrapper: React.FC<ThemeWrapperProps> = ({ children }) => {
   const { theme } = useTheme();
 
   return (
-    <Theme appearance={theme} accentColor="gray">
+    <Theme appearance={theme}>
       {children}
     </Theme>
   );

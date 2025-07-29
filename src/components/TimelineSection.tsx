@@ -226,7 +226,7 @@ const TimelineSection = () => {
         <div className="w-full">
           <TitleSection title="MY JOURNEY" subtitle="Experiences & Education" />
         </div>
-        <p className="text-xl text-muted-foreground">
+        <p className="text-xl">
           Professional experiences and academic background
         </p>
       </div>
@@ -259,7 +259,7 @@ const TimelineSection = () => {
                           style={{animationDelay: `${yearIndex * 0.2}s`}}>
                       <CardHeader>
                         <div className="flex items-center gap-3 lg:justify-end">
-                          <Badge className="bg-primary/20 text-primary">
+                          <Badge className="bg-secondary/20 text-primary">
                             {experienceItem.year}
                           </Badge>
                           <div className="p-2 rounded-full bg-primary/10">
@@ -271,13 +271,13 @@ const TimelineSection = () => {
                                                                       }`}>
                           {experienceItem.title}
                         </CardTitle>
-                        <p className="text-sm text-muted-foreground lg:text-right">
+                        <p className="text-xl lg:text-right">
                           {experienceItem.company}
                         </p>
                       </CardHeader>
                       
                       <CardContent className="lg:text-right">
-                        <p className="text-muted-foreground mb-4">
+                        <p className="mb-4">
                           {experienceItem.description}
                         </p>
                         
@@ -310,7 +310,7 @@ const TimelineSection = () => {
                                       className="flex items-start gap-2 lg:justify-end animate-fade-in-up"
                                       style={{ animationDelay: `${i * 0.1}s` }}
                                     >
-                                      <span className="text-sm text-muted-foreground lg:text-right">
+                                      <span className="text-sm lg:text-right">
                                         {responsibility}
                                       </span>
                                       <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
@@ -344,12 +344,12 @@ const TimelineSection = () => {
                         <CardTitle className="text-xl gradient-text">
                           {educationItem.title}
                         </CardTitle>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-xl">
                           {educationItem.institution}
                         </p>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-muted-foreground">
+                        <p className="">
                           {educationItem.description}
                         </p>
                       </CardContent>

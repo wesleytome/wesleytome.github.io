@@ -38,7 +38,7 @@ const ServicesSection = () => {
           </div>
 
         </div>
-        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+        <p className="text-lg max-w-3xl mx-auto">
           Offering specialized technology consulting focused on strategy and development
         </p>
       </div>
@@ -54,7 +54,7 @@ const ServicesSection = () => {
             </CardHeader>
             <CardTitle className="space-y-4 text-2xl gradient-text px-6">{service.title}</CardTitle>
             <CardContent>
-              <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+              <p className="leading-relaxed">{service.description}</p>
             </CardContent>
           </Card>
         ))}

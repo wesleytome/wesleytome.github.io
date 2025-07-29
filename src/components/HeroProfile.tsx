@@ -39,10 +39,10 @@ const HeroProfile = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-6 text-center"
         >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold hero-title mb-2 font-grandis text-primary">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold hero-title mb-2 font-grandis">
             Wesley Tomé
           </h1>
-          <p className="text-xl sm:text-2xl hero-subtitle font-medium">
+          <p className="text-xl sm:text-2xl hero-subtitle font-medium text-secondary">
             Technology & Product Executive
           </p>
           <p className="text-m sm:text-1xl hero-description font-medium">
@@ -57,7 +57,7 @@ const HeroProfile = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="flex justify-center lg:justify-center gap-4 mb-8"
         >
-            <Button variant="outline" className="glass-card hover-lift social-icon">
+            <Button variant="outline" className="glass-card hover-lift social-icon text-secondary">
               <a href="https://www.linkedin.com/in/wesleytome" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5" />
               </a>

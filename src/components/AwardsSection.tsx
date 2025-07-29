@@ -34,7 +34,7 @@ const AwardsSection = () => {
         <div className="w-full">
           <TitleSection title="AWARD & ACHIEVEMENT" subtitle="Works That I'm Proud Of" />
         </div>
-        <p className="text-xl text-muted-foreground">
+        <p className="text-xl">
           Recognition for excellence in innovation and leadership
         </p>
       </div>
@@ -52,7 +52,7 @@ const AwardsSection = () => {
               <CardTitle className="text-lg">{award.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">{award.description}</p>
+              <p className="">{award.description}</p>
             </CardContent>
           </Card>
         ))}

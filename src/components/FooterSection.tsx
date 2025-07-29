@@ -1,17 +1,19 @@
 import { MapPin } from "lucide-react";
-import { Button } from "@radix-ui/themes";
+// import { Button } from "@radix-ui/themes";
+import { Button } from "../components/ui/button";
 import { Mail, Linkedin } from "lucide-react";
 import { useTheme } from '../contexts/ThemeContext';
 
 
 const FooterSection = () => {
+  
   const { theme } = useTheme();
-  console.log("TEMAAA", theme);
+
   return (
     <footer className="py-20 px-4 sm:px-6 lg:px-8 text-accent-foreground bg-footer">
       <div className="max-w-6xl mx-auto text-center">
         <div className="mb-8">
-          <h3 className="text-3xl font-display font-bold mb-4 text-white">
+          <h3 className="text-3xl font-display font-bold mb-4 text-secondary">
             Let's Work Together!
           </h3>
           <p className="text-xl text-gray-300 mb-8">
@@ -20,13 +22,13 @@ const FooterSection = () => {
         </div>
         
         <div className="flex flex-wrap justify-center gap-6 mb-8">
-          <div className="flex items-center gap-2 text-gray-300">
-            <MapPin className={`w-4 h-4 ${theme === 'light' ? 'text-white' : 'text-primary'}`} />
-            <span>São Paulo, SP</span>
+          <div className="flex items-center gap-2">
+            <MapPin className="w-4 h-4 text-secondary" />
+            <span className={`${theme === 'light' ? 'text-primary-foreground' : 'text-primary-secondary'}`}>São Paulo, SP</span>
           </div>
           <div className="flex items-center gap-2">
-            <Mail className={`w-4 h-4 ${theme === 'light' ? 'text-white' : 'text-primary'}`} />
-            <a href="mailto:job@wesleytome.com" className="hover:text-primary transition-colors text-gray-300">
+            <Mail className="w-4 h-4 text-secondary" />
+            <a href="mailto:job@wesleytome.com" className={`${theme === 'light' ? 'text-primary-foreground' : 'hover:text-secondary transition-colors'}`}>
               job@wesleytome.com
             </a>
           </div>
@@ -42,9 +44,8 @@ const FooterSection = () => {
             Get in Touch
           </Button> */}
           <Button 
-            variant="solid" 
-            className="border-white text-white hover:bg-white hover:text-dark" 
-            radius="full"
+            variant="outline" 
+            className="border-white hover:bg-white hover:text-dark text-secondary" 
             asChild
           >
             <a href="https://www.linkedin.com/in/wesleytome" target="_blank" rel="noopener noreferrer">

@@ -1,7 +1,7 @@
 import App from './App.tsx'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import "@radix-ui/themes/styles.css";
+// import "@radix-ui/themes/styles.css";
 import { ThemeProvider } from './contexts/ThemeContext';
 import ThemeWrapper from './components/ThemeWrapper';
 import './index.css'

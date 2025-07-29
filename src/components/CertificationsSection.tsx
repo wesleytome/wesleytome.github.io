@@ -23,7 +23,7 @@ const CertificationsSection = () => {
         <div className="w-full">
           <TitleSection title="CERTIFICATIONS" subtitle="Professional Certifications" />
         </div>
-        <p className="text-xl text-muted-foreground">
+        <p className="text-xl">
           Professional certifications in technology and agile methodologies
         </p>
       </div>
