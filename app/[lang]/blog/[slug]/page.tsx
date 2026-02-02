@@ -4,6 +4,7 @@ import Link from "next/link";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
+import { BlogPostTranslationInjector } from "@/components/BlogPostTranslationInjector";
 import { PortableText } from "@/components/PortableText";
 import { estimateReadingTime } from "@/lib/reading-time";
 import {
@@ -33,25 +34,29 @@ const buildJsonLd = (post: SanityPost, lang: string, canonical: string) => {
   const publishedAt = post.publishedAt ?? post.updatedAt;
   const langConfig = siteConfig.i18n[lang as "pt" | "en"];
   
-  return [
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: post.title,
-      datePublished: publishedAt,
-      dateModified: post.updatedAt ?? publishedAt,
-      author: {
-        "@type": "Person",
-        name: post.author?.name ?? siteConfig.author.name,
-        jobTitle: post.author?.role ?? langConfig.jobTitle,
-        url: siteConfig.url,
-        sameAs: siteConfig.author.sameAs,
-      },
-      image: post.coverImage
-        ? [urlForImage(post.coverImage).width(1200).quality(80).url()]
-        : undefined,
-      mainEntityOfPage: canonical,
+  const articleSchema: Record<string, any> = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    datePublished: publishedAt,
+    dateModified: post.updatedAt ?? publishedAt,
+    author: {
+      "@type": "Person",
+      name: post.author?.name ?? siteConfig.author.name,
+      jobTitle: post.author?.role ?? langConfig.jobTitle,
+      url: siteConfig.url,
+      sameAs: siteConfig.author.sameAs,
     },
+    mainEntityOfPage: canonical,
+  };
+
+  // Adicionar image apenas se existir
+  if (post.coverImage) {
+    articleSchema.image = [urlForImage(post.coverImage).width(1200).quality(80).url()];
+  }
+  
+  return [
+    articleSchema,
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -186,10 +191,20 @@ export default async function BlogPost({
     ? await fetchRelatedPosts(post.translationGroupId, validLang === "pt" ? "en" : "pt")
     : null;
 
+  // Preparar translation slugs para o LanguageSwitcher
+  const translationSlugs = post.translationGroupId && relatedPost?.slug?.current
+    ? {
+        [validLang]: slug,
+        [validLang === "pt" ? "en" : "pt"]: relatedPost.slug.current,
+      }
+    : undefined;
+
   const canonical = `${siteConfig.url}/${validLang}/blog/${slug}`;
 
   return (
-    <article className="mx-auto w-full max-w-3xl px-6 py-16">
+    <>
+      {translationSlugs && <BlogPostTranslationInjector translationSlugs={translationSlugs} />}
+      <article className="mx-auto w-full max-w-3xl px-6 py-16">
       {isEnabled && (
         <div className="mb-6 rounded-xl border border-warning/40 bg-warning/10 px-4 py-3 text-sm">
           {validLang === "pt"
@@ -271,5 +286,6 @@ export default async function BlogPost({
         }}
       />
     </article>
+    </>
   );
 }

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { HomePageClient } from "@/components/HomePageClient";
-import { Providers } from "@/components/Providers";
 import { isValidLanguage, languageToLocale, languages, type Language } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
 import {
@@ -89,18 +88,16 @@ export default async function HomePage({
   ]);
 
   return (
-    <Providers>
-      <HomePageClient
-        posts={posts}
-        lang={lang}
-        heroData={heroData}
-        servicesData={servicesData}
-        timelineData={timelineData}
-        awardsData={awardsData}
-        certificationsData={certificationsData}
-        globeData={globeData}
-        commonTexts={commonTexts}
-      />
-    </Providers>
+    <HomePageClient
+      posts={posts}
+      lang={lang}
+      heroData={heroData}
+      servicesData={servicesData}
+      timelineData={timelineData}
+      awardsData={awardsData}
+      certificationsData={certificationsData}
+      globeData={globeData}
+      commonTexts={commonTexts}
+    />
   );
 }

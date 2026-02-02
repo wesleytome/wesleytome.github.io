@@ -62,6 +62,22 @@ export default function RootLayout({
 }: {
   children: ReactNode;
 }) {
+  const schemaOrgPerson = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: siteConfig.author.name,
+    jobTitle: defaultLang.jobTitle,
+    description: defaultLang.description,
+    url: siteConfig.url,
+    image: `${siteConfig.url}/wesley-tome.jpg`,
+    sameAs: siteConfig.author.sameAs,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "São Paulo",
+      addressCountry: "BR",
+    },
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -72,21 +88,7 @@ export default function RootLayout({
           id="schema-person"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: siteConfig.author.name,
-              jobTitle: defaultLang.jobTitle,
-              description: defaultLang.description,
-              url: siteConfig.url,
-              image: `${siteConfig.url}/wesley-tome.jpg`,
-              sameAs: siteConfig.author.sameAs,
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "São Paulo",
-                addressCountry: "BR",
-              },
-            }),
+            __html: JSON.stringify(schemaOrgPerson),
           }}
         />
 

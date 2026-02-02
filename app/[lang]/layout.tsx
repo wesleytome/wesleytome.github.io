@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 
 import FooterSection from "@/components/FooterSection";
+import { Providers } from "@/components/Providers";
 import { SiteHeader } from "@/components/SiteHeader";
 import { isValidLanguage, languageToLocale, languages, type Language } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
@@ -90,10 +91,12 @@ export default async function LangLayout({
   ]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground" data-lang={validLang}>
-      <SiteHeader language={validLang} navigationData={navigationData} />
-      <main>{children}</main>
-      <FooterSection footerData={footerData} />
-    </div>
+    <Providers>
+      <div className="min-h-screen bg-background text-foreground" data-lang={validLang}>
+        <SiteHeader language={validLang} navigationData={navigationData} />
+        <main>{children}</main>
+        <FooterSection footerData={footerData} />
+      </div>
+    </Providers>
   );
 }
