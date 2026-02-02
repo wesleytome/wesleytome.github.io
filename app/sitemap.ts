@@ -28,22 +28,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const postEntries = await Promise.all(
-    languages.map(async (language) => {
-      const slugs = await fetchAllSlugs(language);
-      const posts = await fetchPublishedPosts(language);
+  // Verifica se as variáveis de ambiente do Sanity estão disponíveis
+  const hasSanityConfig = 
+    process.env.NEXT_PUBLIC_SANITY_PROJECT_ID && 
+    process.env.NEXT_PUBLIC_SANITY_DATASET;
 
-      return slugs.map((slug) => {
-        const post = posts.find((item) => item.slug.current === slug);
-        return {
-          url: `${siteConfig.url}/${language}/blog/${slug}`,
-          lastModified: post?.updatedAt ?? post?.publishedAt,
-          changeFrequency: "monthly",
-          priority: 0.7,
-        } satisfies MetadataRoute.Sitemap[number];
-      });
-    }),
-  );
+  let postEntries: MetadataRoute.Sitemap = [];
 
-  return [...baseEntries, ...postEntries.flat()];
+  if (hasSanityConfig) {
+    try {
+      const nestedEntries = await Promise.all(
+        languages.map(async (language) => {
+          const slugs = await fetchAllSlugs(language);
+          const posts = await fetchPublishedPosts(language);
+
+          return slugs.map((slug) => {
+            const post = posts.find((item) => item.slug.current === slug);
+            return {
+              url: `${siteConfig.url}/${language}/blog/${slug}`,
+              lastModified: post?.updatedAt ?? post?.publishedAt,
+              changeFrequency: "monthly" as const,
+              priority: 0.7,
+            };
+          });
+        }),
+      );
+      postEntries = nestedEntries.flat();
+    } catch (error) {
+      console.warn("Failed to fetch posts for sitemap:", error);
+    }
+  }
+
+  return [...baseEntries, ...postEntries];
 }

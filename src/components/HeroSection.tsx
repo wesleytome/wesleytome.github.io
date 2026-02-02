@@ -3,8 +3,14 @@ import HeroProfile from './HeroProfile';
 import HeroAbout from './HeroAbout';
 import ThemeToggle from './elements/ThemeToggle';
 import ThemeNotification from './elements/ThemeNotification';
+import type { HeroSectionType, CommonTextsType } from '@/lib/sanity.types';
 
-const Hero = () => {
+type HeroProps = {
+  heroData: HeroSectionType;
+  commonTexts: CommonTextsType;
+};
+
+const Hero = ({ heroData, commonTexts }: HeroProps) => {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative hero-section">
       {/* Theme Toggle */}
@@ -17,10 +23,10 @@ const Hero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* Left Side - Profile Image, Name and Social Icons */}
-          <HeroProfile />
+          <HeroProfile heroData={heroData} commonTexts={commonTexts} />
 
           {/* Right Side - About Me Content */}
-          <HeroAbout />
+          <HeroAbout heroData={heroData} />
           <HeroScroller />
         </div>
       </div>

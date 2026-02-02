@@ -1,22 +1,24 @@
+import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 
-import { SiteFooter } from "@/components/SiteFooter";
+import FooterSection from "@/components/FooterSection";
 import { SiteHeader } from "@/components/SiteHeader";
-import { isValidLanguage, languageToLocale, languages } from "@/lib/i18n";
+import { isValidLanguage, languageToLocale, languages, type Language } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
+import { fetchNavigationByLanguage, fetchFooterByLanguage } from "@/lib/sanity.fetch";
 
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  const { lang } = params;
+  const { lang } = await params;
 
   if (!isValidLanguage(lang)) {
     notFound();
   }
 
-  const locale = languageToLocale[lang];
+  const locale = languageToLocale[lang as Language];
 
   return {
     metadataBase: new URL(siteConfig.url),
@@ -37,20 +39,28 @@ export default async function LangLayout({
   children,
   params,
 }: {
-  children: React.ReactNode;
-  params: { lang: string };
+  children: ReactNode;
+  params: Promise<{ lang: string }>;
 }) {
-  const { lang } = params;
+  const { lang } = await params;
 
   if (!isValidLanguage(lang)) {
     notFound();
   }
 
+  const validLang = lang as Language;
+
+  // Fetch navigation and footer data
+  const [navigationData, footerData] = await Promise.all([
+    fetchNavigationByLanguage(validLang),
+    fetchFooterByLanguage(validLang),
+  ]);
+
   return (
-    <div className="min-h-screen bg-background text-foreground" data-lang={lang}>
-      <SiteHeader language={lang} />
+    <div className="min-h-screen bg-background text-foreground" data-lang={validLang}>
+      <SiteHeader language={validLang} navigationData={navigationData} />
       <main>{children}</main>
-      <SiteFooter />
+      <FooterSection footerData={footerData} />
     </div>
   );
 }

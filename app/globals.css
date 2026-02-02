@@ -1,10 +1,19 @@
-/* @import "@radix-ui/themes/styles.css"; */
-@import "../src/App.css";
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
+/* Força o Dark Reader a não interferir nas variáveis CSS */
+:root,
+html,
+body {
+  color-scheme: light dark;
+}
+
+html[data-darkreader-mode],
+html[data-darkreader-scheme] {
+  color-scheme: none !important;
+}
 
 @font-face {
   font-family: "Grandis Extended";
@@ -715,4 +724,74 @@ html {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Blog Content Styles */
+.prose {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.prose ul,
+.prose ol {
+  display: block;
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li {
+  display: list-item;
+  margin: 0.5rem 0;
+  line-height: 1.75;
+}
+
+.prose ul ul {
+  list-style-type: circle;
+  margin-top: 0.5rem;
+}
+
+.prose ul ul ul {
+  list-style-type: square;
+}
+
+.prose ol ol {
+  list-style-type: lower-alpha;
+  margin-top: 0.5rem;
+}
+
+.prose ol ol ol {
+  list-style-type: lower-roman;
+}
+
+.prose p {
+  margin: 1.5rem 0;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.875em;
+}
+
+.prose blockquote {
+  font-style: italic;
+  border-left-width: 4px;
 }

@@ -88,6 +88,31 @@ export const post = defineType({
             },
           ],
         },
+        {
+          name: "divider",
+          type: "object",
+          title: "Divider (3 dots)",
+          fields: [
+            {
+              name: "style",
+              type: "string",
+              title: "Style",
+              initialValue: "dots",
+              options: {
+                list: [
+                  { title: "Three Dots (Medium style)", value: "dots" },
+                ],
+              },
+            },
+          ],
+          preview: {
+            prepare() {
+              return {
+                title: "• • •",
+              };
+            },
+          },
+        },
       ],
     }),
     defineField({

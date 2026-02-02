@@ -3,15 +3,27 @@ import { notFound } from "next/navigation";
 
 import { HomePageClient } from "@/components/HomePageClient";
 import { Providers } from "@/components/Providers";
-import { isValidLanguage, languageToLocale, languages } from "@/lib/i18n";
+import { isValidLanguage, languageToLocale, languages, type Language } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
+import {
+  fetchPublishedPosts,
+  fetchHeroSectionByLanguage,
+  fetchServicesSectionByLanguage,
+  fetchTimelineByLanguage,
+  fetchAwardsByLanguage,
+  fetchCertificationsByLanguage,
+  fetchGlobeSectionByLanguage,
+  fetchCommonTextsByLanguage,
+} from "@/lib/sanity.fetch";
+
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-  const { lang } = params;
+  const { lang } = await params;
 
   if (!isValidLanguage(lang)) {
     notFound();
@@ -43,17 +55,50 @@ export async function generateMetadata({
 export default async function HomePage({
   params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  const { lang } = params;
+  const { lang } = await params;
 
   if (!isValidLanguage(lang)) {
     notFound();
   }
 
+  const validLang = lang as Language;
+
+  // Fetch all homepage data in parallel
+  const [
+    posts,
+    heroData,
+    servicesData,
+    timelineData,
+    awardsData,
+    certificationsData,
+    globeData,
+    commonTexts,
+  ] = await Promise.all([
+    fetchPublishedPosts(validLang),
+    fetchHeroSectionByLanguage(validLang),
+    fetchServicesSectionByLanguage(validLang),
+    fetchTimelineByLanguage(validLang),
+    fetchAwardsByLanguage(validLang),
+    fetchCertificationsByLanguage(validLang),
+    fetchGlobeSectionByLanguage(validLang),
+    fetchCommonTextsByLanguage(validLang),
+  ]);
+
   return (
     <Providers>
-      <HomePageClient />
+      <HomePageClient
+        posts={posts}
+        lang={lang}
+        heroData={heroData}
+        servicesData={servicesData}
+        timelineData={timelineData}
+        awardsData={awardsData}
+        certificationsData={certificationsData}
+        globeData={globeData}
+        commonTexts={commonTexts}
+      />
     </Providers>
   );
 }

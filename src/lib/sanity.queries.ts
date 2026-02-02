@@ -53,3 +53,127 @@ export const relatedPostsQuery = groq`
     ${postFields}
   }
 `;
+
+export const translationSlugsQuery = groq`
+  *[_type == "post" && translationGroupId == $translationGroupId] {
+    "slug": slug.current,
+    language
+  }
+`;
+
+// Homepage content queries
+export const navigationQuery = groq`
+  *[_type == "navigation" && language == $language][0] {
+    _id,
+    language,
+    translationGroupId,
+    menuItems,
+    blogLabel
+  }
+`;
+
+export const footerQuery = groq`
+  *[_type == "footer" && language == $language][0] {
+    _id,
+    language,
+    translationGroupId,
+    ctaTitle,
+    ctaDescription,
+    location,
+    email,
+    linkedinLabel,
+    linkedinUrl,
+    copyrightText
+  }
+`;
+
+export const commonTextsQuery = groq`
+  *[_type == "commonTexts" && language == $language][0] {
+    _id,
+    language,
+    translationGroupId,
+    downloadResumeLabel,
+    viewAllPostsLabel,
+    featuredLabel,
+    citiesVisitedLabel,
+    continentsLabel,
+    memoriesLabel
+  }
+`;
+
+export const heroSectionQuery = groq`
+  *[_type == "heroSection" && language == $language][0] {
+    _id,
+    language,
+    translationGroupId,
+    name,
+    title,
+    description,
+    aboutMeTitle,
+    aboutMeParagraphs,
+    stats
+  }
+`;
+
+export const servicesSectionQuery = groq`
+  *[_type == "servicesSection" && language == $language][0] {
+    _id,
+    language,
+    translationGroupId,
+    sectionTitle,
+    sectionSubtitle,
+    sectionDescription,
+    services
+  }
+`;
+
+export const timelineQuery = groq`
+  *[_type == "timeline" && language == $language][0] {
+    _id,
+    language,
+    translationGroupId,
+    sectionTitle,
+    sectionSubtitle,
+    sectionDescription,
+    experiences
+  }
+`;
+
+export const awardsQuery = groq`
+  *[_type == "awards" && language == $language][0] {
+    _id,
+    language,
+    translationGroupId,
+    sectionTitle,
+    sectionSubtitle,
+    sectionDescription,
+    awards
+  }
+`;
+
+export const certificationsQuery = groq`
+  *[_type == "certifications" && language == $language][0] {
+    _id,
+    language,
+    translationGroupId,
+    sectionTitle,
+    sectionSubtitle,
+    sectionDescription,
+    certifications
+  }
+`;
+
+export const globeSectionQuery = groq`
+  *[_type == "globeSection" && language == $language][0] {
+    _id,
+    language,
+    translationGroupId,
+    sectionTitle,
+    sectionSubtitle,
+    sectionDescriptionParagraph1,
+    sectionDescriptionParagraph2,
+    citiesLabel,
+    continentsLabel,
+    memoriesLabel
+  }
+`;

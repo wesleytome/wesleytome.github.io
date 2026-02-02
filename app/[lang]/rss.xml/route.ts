@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-
 import { isValidLanguage } from "@/lib/i18n";
 import { fetchPublishedPosts } from "@/lib/sanity.fetch";
 import { siteConfig } from "@/lib/site";
@@ -14,9 +13,9 @@ const escapeXml = (value: string) =>
 
 export async function GET(
   _request: Request,
-  { params }: { params: { lang: string } },
+  { params }: { params: Promise<{ lang: string }> },
 ) {
-  const { lang } = params;
+  const { lang } = await params;
 
   if (!isValidLanguage(lang)) {
     return new NextResponse("Invalid language", { status: 404 });
@@ -33,7 +32,7 @@ export async function GET(
         <link>${url}</link>
         <guid>${url}</guid>
         <description>${escapeXml(post.excerpt ?? siteConfig.description)}</description>
-        ${post.publishedAt ? `<pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>` : ""}
+${post.publishedAt ? `        <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>` : ""}
       </item>`;
     })
     .join("");
@@ -44,7 +43,7 @@ export async function GET(
       <title>${escapeXml(siteConfig.title)}</title>
       <link>${siteConfig.url}/${lang}/blog</link>
       <description>${escapeXml(siteConfig.description)}</description>
-      ${items}
+${items}
     </channel>
   </rss>`;
 

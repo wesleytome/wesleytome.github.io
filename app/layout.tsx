@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
 import { siteConfig } from "@/lib/site";
 
@@ -26,10 +27,13 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <meta name="darkreader-lock" />
+      </head>
       <body>{children}</body>
     </html>
   );

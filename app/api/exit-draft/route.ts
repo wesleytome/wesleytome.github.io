@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site";
 export const runtime = "nodejs";
 
 export async function GET() {
-  const draft = draftMode();
+  const draft = await draftMode();
   draft.disable();
 
   const response = NextResponse.redirect(siteConfig.url, 307);

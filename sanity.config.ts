@@ -1,6 +1,7 @@
 import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
+import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
+import { documentInternationalization } from "@sanity/document-internationalization";
 
 import { schemaTypes } from "./sanity/schemaTypes";
 
@@ -16,7 +17,18 @@ export default defineConfig({
   title: "Wesley Tomé Blog",
   projectId,
   dataset,
-  plugins: [deskTool(), visionTool()],
+  basePath: "/studio",
+  plugins: [
+    structureTool(),
+    visionTool(),
+    documentInternationalization({
+      supportedLanguages: [
+        { id: "pt-BR", title: "Português (BR)" },
+        { id: "en", title: "English" },
+      ],
+      schemaTypes: ["post"],
+    }),
+  ],
   schema: {
     types: schemaTypes,
   },

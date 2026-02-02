@@ -20,7 +20,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ message: "Missing slug or language" }, { status: 400 });
   }
 
-  const draft = draftMode();
+  const draft = await draftMode();
   draft.enable();
 
   const redirectUrl = new URL(`/${lang}/blog/${slug}`, siteConfig.url);

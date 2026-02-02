@@ -13,7 +13,7 @@ import {
 } from "@/lib/sanity.fetch";
 import { urlForImage } from "@/lib/sanity.image";
 import type { SanityPost } from "@/lib/sanity.types";
-import { isValidLanguage, languageToLocale, languages } from "@/lib/i18n";
+import { isValidLanguage, languageToLocale, languages, type Language } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
 
 export const revalidate = 60;
@@ -82,27 +82,28 @@ const buildJsonLd = (post: SanityPost, lang: string, canonical: string) => {
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: string; slug: string };
+  params: Promise<{ lang: string; slug: string }>;
 }): Promise<Metadata> {
-  const { lang, slug } = params;
+  const { lang, slug } = await params;
   if (!isValidLanguage(lang)) {
     notFound();
   }
 
-  const { isEnabled } = draftMode();
-  const post = await fetchPostBySlug(slug, lang, isEnabled);
+  const validLang = lang as Language;
+  const { isEnabled } = await draftMode();
+  const post = await fetchPostBySlug(slug, validLang, isEnabled);
 
   if (!post) {
     notFound();
   }
 
-  const translation =
-    post.translationGroupId &&
-    (await fetchRelatedPosts(post.translationGroupId, lang === "pt" ? "en" : "pt"));
+  const translation = post.translationGroupId
+    ? await fetchRelatedPosts(post.translationGroupId, validLang === "pt" ? "en" : "pt")
+    : null;
 
-  const canonical = `${siteConfig.url}/${lang}/blog/${slug}`;
+  const canonical = `${siteConfig.url}/${validLang}/blog/${slug}`;
   const xDefault =
-    lang === "pt"
+    validLang === "pt"
       ? canonical
       : translation?.slug?.current
         ? `${siteConfig.url}/pt/blog/${translation.slug.current}`
@@ -119,7 +120,7 @@ export async function generateMetadata({
     alternates: {
       canonical,
       languages: languages.reduce<Record<string, string>>((acc, language) => {
-        if (language === lang) {
+        if (language === validLang) {
           acc[languageToLocale[language]] = canonical;
           return acc;
         }
@@ -137,7 +138,7 @@ export async function generateMetadata({
       title: post.seo?.metaTitle ?? post.title,
       description: post.seo?.metaDescription ?? post.excerpt ?? siteConfig.description,
       url: canonical,
-      locale: languageToLocale[lang],
+      locale: languageToLocale[validLang],
       type: "article",
       images: ogImage ? [{ url: ogImage }] : undefined,
     },
@@ -159,16 +160,17 @@ export async function generateMetadata({
 export default async function BlogPost({
   params,
 }: {
-  params: { lang: string; slug: string };
+  params: Promise<{ lang: string; slug: string }>;
 }) {
-  const { lang, slug } = params;
+  const { lang, slug } = await params;
 
   if (!isValidLanguage(lang)) {
     notFound();
   }
 
-  const { isEnabled } = draftMode();
-  const post = await fetchPostBySlug(slug, lang, isEnabled);
+  const validLang = lang as Language;
+  const { isEnabled } = await draftMode();
+  const post = await fetchPostBySlug(slug, validLang, isEnabled);
 
   if (!post) {
     notFound();
@@ -177,31 +179,31 @@ export default async function BlogPost({
   const readingTime =
     post.readingTime ?? estimateReadingTime(post.body ?? undefined);
 
-  const relatedPost =
-    post.translationGroupId &&
-    (await fetchRelatedPosts(post.translationGroupId, lang === "pt" ? "en" : "pt"));
+  const relatedPost = post.translationGroupId
+    ? await fetchRelatedPosts(post.translationGroupId, validLang === "pt" ? "en" : "pt")
+    : null;
 
-  const canonical = `${siteConfig.url}/${lang}/blog/${slug}`;
+  const canonical = `${siteConfig.url}/${validLang}/blog/${slug}`;
 
   return (
     <article className="mx-auto w-full max-w-3xl px-6 py-16">
       {isEnabled && (
         <div className="mb-6 rounded-xl border border-warning/40 bg-warning/10 px-4 py-3 text-sm">
-          {lang === "pt"
+          {validLang === "pt"
             ? "Preview ativado. Este conteúdo não está publicado."
             : "Preview enabled. This content is not published."}
         </div>
       )}
       <div className="mb-10 space-y-3">
         <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
-          {lang === "pt" ? "Blog" : "Blog"}
+          {validLang === "pt" ? "Blog" : "Blog"}
         </p>
         <h1 className="text-4xl font-semibold">{post.title}</h1>
         <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
           {post.publishedAt && (
             <span>
               {new Date(post.publishedAt).toLocaleDateString(
-                lang === "pt" ? "pt-BR" : "en",
+                validLang === "pt" ? "pt-BR" : "en",
                 {
                   dateStyle: "long",
                 },
@@ -210,7 +212,7 @@ export default async function BlogPost({
           )}
           {readingTime && (
             <span>
-              {lang === "pt"
+              {validLang === "pt"
                 ? `${readingTime} min de leitura`
                 : `${readingTime} min read`}
             </span>
@@ -248,10 +250,10 @@ export default async function BlogPost({
       {relatedPost && (
         <div className="mt-12 rounded-2xl border border-border p-6">
           <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
-            {lang === "pt" ? "Leia também" : "Read also"}
+            {validLang === "pt" ? "Leia também" : "Read also"}
           </p>
           <Link
-            href={`/${lang === "pt" ? "en" : "pt"}/blog/${relatedPost.slug.current}`}
+            href={`/${validLang === "pt" ? "en" : "pt"}/blog/${relatedPost.slug.current}`}
             className="mt-3 block text-lg font-semibold hover:text-primary"
           >
             {relatedPost.title}
@@ -262,7 +264,7 @@ export default async function BlogPost({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildJsonLd(post, lang, canonical)),
+          __html: JSON.stringify(buildJsonLd(post, validLang, canonical)),
         }}
       />
     </article>
