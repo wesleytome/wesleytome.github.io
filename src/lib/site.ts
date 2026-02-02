@@ -1,0 +1,47 @@
+export const siteConfig = {
+  name: "Wesley Tomé",
+  url: "https://www.wesleytome.com",
+  twitterHandle: "@wesleytome",
+  author: {
+    name: "Wesley Tomé",
+    sameAs: ["https://www.linkedin.com/in/wesleytome"],
+  },
+  i18n: {
+    pt: {
+      locale: "pt-BR",
+      title: "Wesley Tomé – Executivo de Produto e Tecnologia | Líder em Transformação Digital",
+      description: "Executivo de tecnologia e produto com mais de 20 anos de experiência liderando transformação digital, inovação e crescimento na América Latina.",
+      keywords: [
+        "Wesley Tomé",
+        "Executivo de Produto",
+        "Líder em Tecnologia",
+        "Transformação Digital",
+        "América Latina",
+        "Consultor Executivo",
+        "Estratégia Digital",
+        "Inovação",
+      ],
+      ogTitle: "Wesley Tomé – Executivo de Produto e Tecnologia",
+      ogDescription: "Executivo em tecnologia, estratégia de produto e inovação digital. Histórico comprovado liderando programas de alto impacto para grandes empresas e startups na América Latina.",
+      jobTitle: "Executivo de Estratégia de Produto e Crescimento",
+    },
+    en: {
+      locale: "en-US",
+      title: "Wesley Tomé – Product & Technology Executive | Digital Transformation Leader",
+      description: "Technology and product executive with over 20 years of experience leading digital transformation, innovation, and growth across Latin America.",
+      keywords: [
+        "Wesley Tomé",
+        "Product Executive",
+        "Technology Leader",
+        "Digital Transformation",
+        "LATAM",
+        "Executive Consultant",
+        "Digital Strategy",
+        "Innovation",
+      ],
+      ogTitle: "Wesley Tomé – Product & Technology Executive",
+      ogDescription: "Executive in technology, product strategy, and digital innovation. Proven track record in leading high-impact programs for major companies and startups in LATAM.",
+      jobTitle: "Product Strategy & Growth Executive",
+    },
+  },
+};

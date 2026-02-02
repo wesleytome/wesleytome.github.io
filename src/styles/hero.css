@@ -1,0 +1,193 @@
+/* ===== HERO SECTION STYLES ===== */
+
+/* Light Theme Hero Effects */
+.light .hero-section {
+  background: linear-gradient(135deg, 
+    hsl(210, 40%, 98%) 0%, 
+    hsl(210, 35%, 95%) 50%, 
+    hsl(210, 30%, 92%) 100%);
+}
+
+.light .hero-profile {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 20px 40px rgba(59, 130, 246, 0.15),
+    0 8px 16px rgba(59, 130, 246, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.light .hero-profile:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 30px 60px rgba(59, 130, 246, 0.25),
+    0 12px 24px rgba(59, 130, 246, 0.15);
+}
+
+.light .hero-profile img {
+  transition: transform 0.4s ease;
+  filter: brightness(1.05) contrast(1.1);
+}
+
+.light .hero-profile:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.1) contrast(1.15);
+}
+
+.light .hero-text {
+  color: hsl(133, 100%, 50%);
+}
+
+.light .hero-title {
+  background: linear-gradient(135deg, 
+    hsl(210, 85%, 45%), 
+    hsl(160, 60%, 45%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.light .hero-subtitle {
+  color: hsl(220, 15%, 35%);
+}
+
+.light .hero-description {
+  color: hsl(215, 16%, 47%);
+}
+
+/* Dark Theme Hero Effects */
+.dark .hero-section {
+  background: linear-gradient(135deg, 
+    hsl(0, 0%, 11%) 0%, 
+    hsl(220, 15%, 8%) 50%, 
+    hsl(220, 20%, 5%) 100%);
+}
+
+.dark .hero-profile {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 20px 40px rgba(82, 212, 238, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.dark .hero-profile:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 30px 60px rgba(82, 212, 238, 0.15),
+    0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.dark .hero-profile img {
+  transition: transform 0.4s ease;
+  filter: brightness(1.1) contrast(1.05);
+}
+
+.dark .hero-profile:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.15) contrast(1.1);
+}
+
+.dark .hero-text {
+  color: hsl(0, 0%, 98%);
+}
+
+.dark .hero-title {
+  background: linear-gradient(135deg, 
+    hsl(36, 12%, 59%), 
+    hsl(83, 26%, 60%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .hero-subtitle {
+  color: hsl(220, 10%, 70%);
+}
+
+.dark .hero-description {
+  color: hsl(220, 10%, 80%);
+}
+
+/* ===== SOCIAL ICONS ===== */
+.light .social-icon {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: hsl(210, 85%, 45%);
+  transition: all 0.3s ease;
+}
+
+.light .social-icon:hover {
+  background: hsl(210, 85%, 45%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.dark .social-icon {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(82, 212, 238, 0.2);
+  color: hsl(83, 26%, 60%);
+  transition: all 0.3s ease;
+}
+
+.dark .social-icon:hover {
+  background: hsl(83, 26%, 60%);
+  color: hsl(0, 0%, 11%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(82, 212, 238, 0.3);
+}
+
+/* ===== SCROLL BUTTON ===== */
+.light .scroll-button {
+  border: 2px solid hsl(210, 85%, 45%);
+  color: hsl(210, 85%, 45%);
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.light .scroll-button:hover {
+  background: hsl(210, 85%, 45%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.dark .scroll-button {
+  border: 2px solid hsl(83, 26%, 60%);
+  color: hsl(83, 26%, 60%);
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.dark .scroll-button:hover {
+  background: hsl(83, 26%, 60%);
+  color: hsl(0, 0%, 11%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(82, 212, 238, 0.3);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 1024px) {
+  .hero-profile {
+    margin: 0 auto;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-profile {
+    max-width: 250px;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+} 

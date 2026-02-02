@@ -1,25 +1,8 @@
 import { m, LazyMotion, domAnimation } from "framer-motion";
+import type { HeroSectionType } from "@/lib/sanity.types";
 
-const HeroAbout = () => {
+const HeroAbout = ({ heroData }: { heroData: HeroSectionType }) => {
   
-  // Data Structure - About Me
-  // const aboutMe = "Technology Executive and Product Leader with 25 years of experience bridging business strategy, product innovation, and technical execution. Proven track record of scaling operations across LATAM markets, leading digital transformation initiatives, and delivering measurable business impact through strategic technology solutions and high-performance team leadership.";
-
-  // Data Structure - Statistics
-  // const stats = [
-  //   { value: "25", label: "Years of Experience" },
-  //   { value: "70+", label: "Professionals Led" },
-  //   { value: "+$2M", label: "Monthly Impact" },
-  //   { value: "5", label: "LATAM Countries" }
-  // ];
-
-  const stats = [
-    { value: "25", label: "Years of Experience" },
-    { value: "70+", label: "Professionals Led" },
-    { value: "+$2M", label: "Monthly Impact" },
-    { value: "5", label: "LATAM Countries" }
-  ];
-
   return (
 
     <LazyMotion features={domAnimation} strict>
@@ -38,7 +21,7 @@ const HeroAbout = () => {
           className="mb-8"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            About Me
+            {heroData.aboutMeTitle}
           </h2>
           <div className="w-16 h-1 bg-primary rounded-full"></div>
         </m.div>
@@ -50,24 +33,11 @@ const HeroAbout = () => {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="space-y-6"
         >
-          <p className="text-lg leading-relaxed">
-            <span className="">Hello! I’m Wesley Tomé</span>, a technology-driven Product Executive with 25 years of experience building innovative digital solutions and leading high-impact product teams.
-          </p>
-          <p className="text-lg leading-relaxed">
-            I specialize in  <strong className="text-secondary">product development, architecture, and digital strategy</strong>, blending deep technical expertise with agile leadership. I’ve led over 70 professionals across 8 squads, managed BRL 2M/month programs, and consistently delivered business results.
-          </p>
-          <p className="text-lg leading-relaxed">
-            As co-founder of two tech companies, I helped one double revenue in its first year, and launched an award-winning EdTech platform, recognized as a top innovation in Latin America.
-          </p>
-          {/* <p className="text-lg text-muted-foreground leading-relaxed">
-            Throughout my career, I've had the privilege of working with diverse teams across Latin America and beyond, developing a deep understanding of global markets and user behaviors.
-          </p>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            My executive approach combines strategic foresight with hands-on execution. I've consistently delivered transformational results by identifying market opportunities, building high-performing teams, and implementing scalable solutions that drive sustainable growth. My leadership philosophy centers on data-driven decision making and customer-centric innovation, enabling organizations to achieve competitive advantage in digital-first markets.
-          </p> */}
-          <p className="text-lg leading-relaxed">
-            I’ve worked across finance, education, retail, entertainment, and more, adapting fast, connecting dots, and driving results wherever technology is at the core. My passion lies in solving real-world problems with scalable, resilient, and secure solutions.
-          </p>
+          {heroData.aboutMeParagraphs?.map((paragraph: string, index: number) => (
+            <p key={index} className="text-lg leading-relaxed">
+              {paragraph}
+            </p>
+          ))}
         </m.div>
 
         {/* Key Skills/Highlights */}
@@ -77,7 +47,7 @@ const HeroAbout = () => {
           transition={{ duration: 0.6, delay: 0.9 }}
           className="mt-8 grid grid-cols-2 gap-4"
         >
-          {stats.map((stat: { value: string; label: string }, index: number) => (
+          {heroData.stats?.map((stat: { value: string; label: string }, index: number) => (
             <div key={index} className="text-center p-4 glass-card interactive-card">
               <div className="text-3xl font-bold text-primary mb-1">{stat.value}</div>
               <div className="text-sm">{stat.label}</div>

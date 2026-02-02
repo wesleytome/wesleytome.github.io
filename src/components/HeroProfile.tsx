@@ -1,8 +1,9 @@
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Linkedin, Download } from "lucide-react";
+import type { HeroSectionType, CommonTextsType } from "@/lib/sanity.types";
 
-const HeroProfile = () => {
+const HeroProfile = ({ heroData, commonTexts }: { heroData: HeroSectionType; commonTexts: CommonTextsType }) => {
   
   return (
 
@@ -40,13 +41,13 @@ const HeroProfile = () => {
           className="mb-6 text-center"
         >
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold hero-title mb-2 font-grandis">
-            Wesley Tomé
+            {heroData.name}
           </h1>
           <p className="text-xl sm:text-2xl hero-subtitle font-medium text-secondary">
-            Technology & Product Executive
+            {heroData.title}
           </p>
           <p className="text-m sm:text-1xl hero-description font-medium">
-            25 years building scalable digital products, leading agile teams, and solving complex problems with innovative tech.
+            {heroData.description}
           </p>
         </m.div>
 
@@ -75,7 +76,7 @@ const HeroProfile = () => {
           <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground animate-pulse-glow"  variant="ghost">
             <Download className="mr-2 h-5 w-5" />
             <a href="/downloads/resume_wesley-tome_en.pdf" target="_blank" rel="noopener noreferrer">
-              Download Resume
+              {commonTexts.downloadResumeLabel}
             </a>
           </Button>
         </m.div>

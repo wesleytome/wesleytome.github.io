@@ -1,8 +1,19 @@
+"use client";
+
 import { useState, useEffect, useRef } from 'react';
-import Globe from 'react-globe.gl';
+import dynamic from 'next/dynamic';
 import { Plane } from 'lucide-react';
-import globeTexture from "../assets/globe.jpg";
 import TitleSection from './TitleSection';
+import type { GlobeSectionType } from '@/lib/sanity.types';
+
+const Globe = dynamic(() => import('react-globe.gl'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center" style={{ width: 800, height: 800 }}>
+      <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+    </div>
+  ),
+});
 
 interface Place {
   lat: number;
@@ -14,13 +25,16 @@ interface Place {
   isHome?: boolean;
 }
 
-const GlobeSection = () => {
-  // Estados
+interface GlobeSectionProps {
+  globeData: GlobeSectionType;
+}
+
+const GlobeSection = ({ globeData }: GlobeSectionProps) => {
   const [isMobile, setIsMobile] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
+  const [isClient, setIsClient] = useState(false);
   const globeRef = useRef<any>(null);
   
-  // Dados dos locais visitados
   const visitedPlaces: Place[] = [
     { lat: 40.7128, lng: -74.0060, name: 'New York', country: 'USA', color: '#ff6b6b', size: 0.5 },
     { lat: 28.4283, lng: -81.4636, name: 'Orlando', country: 'USA', color: '#ff6b6b', size: 0.5 },
@@ -31,18 +45,19 @@ const GlobeSection = () => {
     { lat: 51.5074, lng: -0.1278, name: 'London', country: 'UK', color: '#96ceb4', size: 0.5 },
     { lat: 48.8566, lng: 2.3522, name: 'Paris', country: 'France', color: '#f7dc6f', size: 0.5 },
     { lat: -22.9068, lng: -43.1729, name: 'Rio de Janeiro', country: 'Brazil', color: '#f39c12', size: 0.8, isHome: true },
-
     { lat: -33.4489, lng: -70.6693, name: 'Santiago', country: 'Chile', color: '#e74c3c', size: 0.5 },
     { lat: 4.7110, lng: -74.0721, name: 'Bogotá', country: 'Colombia', color: '#f1c40f', size: 0.5 },
     { lat: -25.2637, lng: -57.5759, name: 'Assunção', country: 'Paraguay', color: '#9b59b6', size: 0.5 },
     { lat: -12.0464, lng: -77.0428, name: 'Lima', country: 'Peru', color: '#1abc9c', size: 0.5 }
-];
+  ];
 
-
-
-
-  // Hook para detectar dispositivos móveis
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     const handleResize = () => {
       const viewPort = window.innerWidth;
       setIsMobile(viewPort < 850);
@@ -52,14 +67,12 @@ const GlobeSection = () => {
     handleResize();
     
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [isClient]);
 
-  // Configuração do globo após carregamento
   useEffect(() => {
     if (globeRef.current) {
       const controls = globeRef.current.controls();
       if (controls) {
-        // Configurações de controle
         controls.enableZoom = false;
         controls.autoRotate = true;
         controls.autoRotateSpeed = 0.5;
@@ -67,13 +80,11 @@ const GlobeSection = () => {
         controls.enableRotate = true;
       }
       
-      // Posição inicial do globo
       globeRef.current.pointOfView({ lat: 48.0, lng: 11.0, altitude: 3 }, 4000);
     }
-  }, []);
+  }, [isClient]);
 
-  // Função para criar marcadores HTML customizados
-  const createMarkerElement = (d: any) => {
+  const createMarkerElement = (d: any): HTMLElement => {
     const place = d as Place;
     const el = document.createElement("div");
     el.innerHTML = `
@@ -96,57 +107,69 @@ const GlobeSection = () => {
     return el;
   };
 
+  if (!isClient) {
+    return (
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-bottom-to-top">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center">
+            <div className="w-auto h-12 bg-primary/5 rounded-xl flex items-center justify-center">
+              <Plane className="h-6 w-6 text-primary" />
+            </div>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="w-full">
+                <TitleSection title={globeData.sectionTitle} subtitle={globeData.sectionSubtitle} />
+              </div>
+            </div>
+            <p className="text-xl mb-4">
+              {globeData.sectionDescriptionParagraph1}
+            </p>
+          </div>
+          <div className="-mb-20 -mt-20 flex items-center justify-center" style={{ height: 800 }}>
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-bottom-to-top">
       <div className="max-w-6xl mx-auto">
-        {/* Header da seção */}
         <div className="text-center">
           <div className="w-auto h-12 bg-primary/5 rounded-xl flex items-center justify-center">
             <Plane className="h-6 w-6 text-primary" />
           </div>
           <div className="flex items-center justify-center gap-3 mb-6">
-            
             <div className="w-full">
-              <TitleSection title="PLACES I'VE EXPLORED" subtitle="Places I've Explored" />
+              <TitleSection title={globeData.sectionTitle} subtitle={globeData.sectionSubtitle} />
             </div>
           </div>
           <p className="text-xl mb-4">
-            Throughout my career, I've had the opportunity to explore diverse countries across Latin America and beyond. These experiences have enriched my cultural awareness, sharpened my adaptability, and deepened my understanding of local markets, behaviors, and business dynamics.
+            {globeData.sectionDescriptionParagraph1}
           </p>
-          <p className="text-xl">
-            Whether leading cross-border initiatives, working side-by-side with multicultural teams, or simply immersing myself in local life, each destination has contributed to my ability to navigate complexity and build meaningful connections across cultures.
-          </p>
+          {globeData.sectionDescriptionParagraph2 && (
+            <p className="text-xl">
+              {globeData.sectionDescriptionParagraph2}
+            </p>
+          )}
         </div>
 
-        {/* Globo 3D */}
-        <div className="-mb-20 -mt-20 flex items-center justify-center cursor-grab ">
+        <div className="-mb-20 -mt-20 flex items-center justify-center cursor-grab">
           <Globe
             ref={globeRef}
-            
-            // Textura do globo
-            globeImageUrl= {globeTexture}
-            
-            // Fundo transparente
+            globeImageUrl="/globe.jpg"
             backgroundColor="rgba(0,0,0,0)"
             backgroundImageUrl={null}
-            
-            // Configurações de atmosfera
             showAtmosphere={true}
             atmosphereColor="#4a90e2"
             atmosphereAltitude={0.4}
-            
-            // Marcadores HTML customizados
             htmlElementsData={visitedPlaces}
             htmlElement={createMarkerElement}
             htmlAltitude={0.15}
-            
-            // Configurações de pins usando pointsData como fallback
             pointsData={visitedPlaces}
             pointAltitude={0.15}
             pointColor="color"
             pointRadius={(d: any) => (d as Place).size || 0.5}
-            
-            // Labels dos pins
             pointLabel={(d) => `
               <div style="
                 background: rgba(0,0,0,0.8);
@@ -161,21 +184,14 @@ const GlobeSection = () => {
                 ${(d as Place).isHome ? '<br/><span style="color: #f59e0b;">🏠 Home</span>' : ''}
               </div>
             `}
-            
-            // Interatividade
             onPointClick={(point: any) => setSelectedPlace(point as Place)}
             enablePointerInteraction={true}
-            
-            // Animação de entrada
             animateIn={true}
-            
-            // Dimensões responsivas
             width={isMobile ? 400 : 800}
             height={isMobile ? 400 : 800}
           />
         </div>
 
-        {/* Informações do local selecionado */}
         {selectedPlace && (
           <div className="glass-card p-6 mb-8 animate-fade-in-up">
             <div className="flex items-center gap-4 mb-4">
@@ -196,26 +212,24 @@ const GlobeSection = () => {
           </div>
         )}
 
-        {/* Estatísticas */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
           <div className="text-center p-6 glass-card">
             <div className="text-3xl font-bold text-secondary mb-2">
               {visitedPlaces.length}
             </div>
-            <p className="text-sm">Cities Visited</p>
+            <p className="text-sm">{globeData.citiesLabel}</p>
           </div>
 
           <div className="text-center p-6 glass-card">
             <div className="text-3xl font-bold text-secondary mb-2">3</div>
-            <p className="text-sm">Continents</p>
+            <p className="text-sm">{globeData.continentsLabel}</p>
           </div>
           
           <div className="text-center p-6 glass-card">
             <div className="text-3xl font-bold text-secondary mb-2">∞</div>
-            <p className="text-sm">Memories</p>
+            <p className="text-sm">{globeData.memoriesLabel}</p>
           </div>
         </div>
-
       </div>
     </section>
   );
