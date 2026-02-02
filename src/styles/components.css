@@ -1,0 +1,183 @@
+/* ===== COMPONENT STYLES ===== */
+
+/* ===== GLASS CARD EFFECTS ===== */
+
+
+
+
+/* ===== TECH PATTERN BACKGROUNDS ===== */
+
+/* Light Theme Tech Pattern */
+.light .tech-pattern {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+  background-size: 100px 100px, 150px 150px;
+  background-position: 0 0, 50px 50px;
+}
+
+/* Dark Theme Tech Pattern */
+.dark .tech-pattern {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(82, 212, 238, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(52, 211, 153, 0.1) 0%, transparent 50%);
+  background-size: 100px 100px, 150px 150px;
+  background-position: 0 0, 50px 50px;
+}
+
+/* ===== GRADIENT TEXT EFFECTS ===== */
+
+/* Light Theme Gradient Text */
+.light .gradient-text {
+  background: linear-gradient(135deg, 
+    hsl(210, 85%, 45%), 
+    hsl(160, 60%, 45%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Dark Theme Gradient Text */
+.dark .gradient-text {
+  background: linear-gradient(135deg, 
+    hsl(36, 12%, 59%), 
+    hsl(83, 26%, 60%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== BUTTON STYLES ===== */
+
+/* Light Theme Buttons */
+.light .btn-primary {
+  background: linear-gradient(135deg, 
+    hsl(210, 85%, 45%), 
+    hsl(200, 85%, 40%));
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.light .btn-primary:hover {
+  background: linear-gradient(135deg, 
+    hsl(210, 85%, 40%), 
+    hsl(200, 85%, 35%));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.light .btn-secondary {
+  background: rgba(255, 255, 255, 0.9);
+  color: hsl(210, 85%, 45%);
+  border: 2px solid hsl(210, 85%, 45%);
+  transition: all 0.3s ease;
+}
+
+.light .btn-secondary:hover {
+  background: hsl(210, 85%, 45%);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Dark Theme Buttons */
+.dark .btn-primary {
+  background: linear-gradient(135deg, 
+    hsl(83, 26%, 60%), 
+    hsl(73, 26%, 55%));
+  color: hsl(0, 0%, 11%);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.dark .btn-primary:hover {
+  background: linear-gradient(135deg, 
+    hsl(83, 26%, 55%), 
+    hsl(73, 26%, 50%));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(82, 212, 238, 0.3);
+}
+
+.dark .btn-secondary {
+  background: rgba(0, 0, 0, 0.3);
+  color: hsl(83, 26%, 60%);
+  border: 2px solid hsl(83, 26%, 60%);
+  transition: all 0.3s ease;
+}
+
+.dark .btn-secondary:hover {
+  background: hsl(83, 26%, 60%);
+  color: hsl(0, 0%, 11%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(82, 212, 238, 0.3);
+}
+
+/* ===== CARD STYLES ===== */
+
+/* Light Theme Cards */
+.light .content-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.light .content-card:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+/* Dark Theme Cards */
+.dark .content-card {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(82, 212, 238, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.dark .content-card:hover {
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px);
+}
+
+/* ===== SECTION BACKGROUNDS ===== */
+
+/* Light Theme Section Backgrounds */
+.light .section-bg-primary {
+  background: linear-gradient(135deg, 
+    hsl(210, 40%, 98%) 0%, 
+    hsl(210, 35%, 95%) 100%);
+}
+
+.light .section-bg-secondary {
+  background: linear-gradient(135deg, 
+    hsl(210, 35%, 95%) 0%, 
+    hsl(210, 30%, 92%) 100%);
+}
+
+/* Dark Theme Section Backgrounds */
+.dark .section-bg-primary {
+  background: linear-gradient(135deg, 
+    hsl(0, 0%, 11%) 0%, 
+    hsl(220, 15%, 8%) 100%);
+}
+
+.dark .section-bg-secondary {
+  background: linear-gradient(135deg, 
+    hsl(220, 15%, 8%) 0%, 
+    hsl(220, 20%, 5%) 100%);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+  .glass-card {
+    backdrop-filter: blur(5px);
+  }
+  
+  .content-card {
+    margin: 0 1rem;
+  }
+} 
