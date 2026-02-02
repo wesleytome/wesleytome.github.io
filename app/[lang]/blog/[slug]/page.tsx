@@ -31,6 +31,8 @@ export async function generateStaticParams() {
 
 const buildJsonLd = (post: SanityPost, lang: string, canonical: string) => {
   const publishedAt = post.publishedAt ?? post.updatedAt;
+  const langConfig = siteConfig.i18n[lang as "pt" | "en"];
+  
   return [
     {
       "@context": "https://schema.org",
@@ -41,7 +43,7 @@ const buildJsonLd = (post: SanityPost, lang: string, canonical: string) => {
       author: {
         "@type": "Person",
         name: post.author?.name ?? siteConfig.author.name,
-        jobTitle: post.author?.role ?? siteConfig.author.jobTitle,
+        jobTitle: post.author?.role ?? langConfig.jobTitle,
         url: siteConfig.url,
         sameAs: siteConfig.author.sameAs,
       },
@@ -72,7 +74,7 @@ const buildJsonLd = (post: SanityPost, lang: string, canonical: string) => {
       "@context": "https://schema.org",
       "@type": "Person",
       name: siteConfig.author.name,
-      jobTitle: siteConfig.author.jobTitle,
+      jobTitle: langConfig.jobTitle,
       url: siteConfig.url,
       sameAs: siteConfig.author.sameAs,
     },
@@ -90,6 +92,7 @@ export async function generateMetadata({
   }
 
   const validLang = lang as Language;
+  const langConfig = siteConfig.i18n[validLang];
   const { isEnabled } = await draftMode();
   const post = await fetchPostBySlug(slug, validLang, isEnabled);
 
@@ -116,7 +119,7 @@ export async function generateMetadata({
 
   return {
     title: post.seo?.metaTitle ?? post.title,
-    description: post.seo?.metaDescription ?? post.excerpt ?? siteConfig.description,
+    description: post.seo?.metaDescription ?? post.excerpt ?? langConfig.description,
     alternates: {
       canonical,
       languages: languages.reduce<Record<string, string>>((acc, language) => {
@@ -136,7 +139,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title: post.seo?.metaTitle ?? post.title,
-      description: post.seo?.metaDescription ?? post.excerpt ?? siteConfig.description,
+      description: post.seo?.metaDescription ?? post.excerpt ?? langConfig.description,
       url: canonical,
       locale: languageToLocale[validLang],
       type: "article",
@@ -145,7 +148,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: post.seo?.metaTitle ?? post.title,
-      description: post.seo?.metaDescription ?? post.excerpt ?? siteConfig.description,
+      description: post.seo?.metaDescription ?? post.excerpt ?? langConfig.description,
       images: ogImage ? [ogImage] : undefined,
     },
     robots: post.seo?.noindex

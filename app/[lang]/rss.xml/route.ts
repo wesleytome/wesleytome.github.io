@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isValidLanguage } from "@/lib/i18n";
+import { isValidLanguage, type Language } from "@/lib/i18n";
 import { fetchPublishedPosts } from "@/lib/sanity.fetch";
 import { siteConfig } from "@/lib/site";
 
@@ -21,17 +21,19 @@ export async function GET(
     return new NextResponse("Invalid language", { status: 404 });
   }
 
-  const posts = await fetchPublishedPosts(lang);
+  const validLang = lang as Language;
+  const langConfig = siteConfig.i18n[validLang];
+  const posts = await fetchPublishedPosts(validLang);
 
   const items = posts
     .map((post) => {
-      const url = `${siteConfig.url}/${lang}/blog/${post.slug.current}`;
+      const url = `${siteConfig.url}/${validLang}/blog/${post.slug.current}`;
       return `
       <item>
         <title>${escapeXml(post.title)}</title>
         <link>${url}</link>
         <guid>${url}</guid>
-        <description>${escapeXml(post.excerpt ?? siteConfig.description)}</description>
+        <description>${escapeXml(post.excerpt ?? langConfig.description)}</description>
 ${post.publishedAt ? `        <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>` : ""}
       </item>`;
     })
@@ -40,9 +42,9 @@ ${post.publishedAt ? `        <pubDate>${new Date(post.publishedAt).toUTCString(
   const rss = `<?xml version="1.0" encoding="UTF-8" ?>
   <rss version="2.0">
     <channel>
-      <title>${escapeXml(siteConfig.title)}</title>
-      <link>${siteConfig.url}/${lang}/blog</link>
-      <description>${escapeXml(siteConfig.description)}</description>
+      <title>${escapeXml(langConfig.title)}</title>
+      <link>${siteConfig.url}/${validLang}/blog</link>
+      <description>${escapeXml(langConfig.description)}</description>
 ${items}
     </channel>
   </rss>`;

@@ -29,12 +29,14 @@ export async function generateMetadata({
     notFound();
   }
 
+  const validLang = lang as Language;
+  const langConfig = siteConfig.i18n[validLang];
   const canonical = `${siteConfig.url}/${lang}`;
   const locale = languageToLocale[lang];
 
   return {
-    title: siteConfig.title,
-    description: siteConfig.description,
+    title: langConfig.title,
+    description: langConfig.description,
     alternates: {
       canonical,
       languages: {

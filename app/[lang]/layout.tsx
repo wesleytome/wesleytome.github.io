@@ -18,15 +18,48 @@ export async function generateMetadata({
     notFound();
   }
 
-  const locale = languageToLocale[lang as Language];
+  const validLang = lang as Language;
+  const locale = languageToLocale[validLang];
+  const langConfig = siteConfig.i18n[validLang];
 
   return {
     metadataBase: new URL(siteConfig.url),
+    title: {
+      default: langConfig.title,
+      template: `%s | ${siteConfig.name}`,
+    },
+    description: langConfig.description,
+    keywords: langConfig.keywords,
     alternates: {
-      canonical: `/${lang}`,
+      canonical: `/${validLang}`,
+      languages: {
+        "pt-BR": `${siteConfig.url}/pt`,
+        "en-US": `${siteConfig.url}/en`,
+        "x-default": `${siteConfig.url}/en`,
+      },
     },
     openGraph: {
-      locale,
+      title: langConfig.ogTitle,
+      description: langConfig.ogDescription,
+      url: `${siteConfig.url}/${validLang}`,
+      siteName: siteConfig.name,
+      locale: locale.replace("-", "_"),
+      type: "website",
+      images: [
+        {
+          url: `${siteConfig.url}/wesley-tome.jpg`,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: langConfig.ogTitle,
+      description: langConfig.ogDescription,
+      creator: siteConfig.twitterHandle,
+      images: [`${siteConfig.url}/wesley-tome.jpg`],
     },
   };
 }
