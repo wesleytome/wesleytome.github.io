@@ -144,7 +144,7 @@
 
   .light {
 
-    --background: rgb(255, 250, 241);
+    --background: hsl(39, 100%, 97%);
     --foreground: hsl(0, 0%, 30%);
 
     --card: rgba(102, 102, 103, 0.05);
